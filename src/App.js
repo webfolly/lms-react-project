@@ -6,7 +6,7 @@ export default function App() {
 	return (
 		<div>
 			<TopNav />
-			<main className="container">
+			<main className='container-fluid'>
 				<Routes />
 			</main>
 		</div>
