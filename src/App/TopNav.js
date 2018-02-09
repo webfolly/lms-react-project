@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import logonav from '../images/logo.jpeg';
 
 export default function TopNav() {
     return (
@@ -20,7 +21,7 @@ export default function TopNav() {
              <span className="icon-bar" />
            </button>
            <Link to="/" className="navbar-brand">
-             <img src={''} style={{height:40}} alt="logo"/>
+             <img src={logonav} style={{height:30,paddingBottom:10}} alt="logo"/>
            </Link>
          </div>
          <div id="navbar" className="navbar-collapse collapse">
