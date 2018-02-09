@@ -10,7 +10,7 @@ export default class CoursessView extends Component {
             <div className='col-sm-12 col-md-12 col-lg-12'>
                 <div className='col-sm-3 col-md-3 col-lg-3'>
                     <div className="card" style={{width: '100%'}}>
-                        <img src={avatar} alt="course" style={{width: '100%'}}/>
+                        <img src={avatar} alt="course" style={{width: '100%', width: '100%', height: '130px'}}/>
                         <div className="container"> 
                             <h4><b>Front End Course</b></h4>
                             <div>Learn React with us.</div>
@@ -20,7 +20,7 @@ export default class CoursessView extends Component {
                 </div>       
                 <div className='col-sm-3 col-md-3 col-lg-3'>
                     <div className="card" style={{width: '100%'}}>
-                        <img src={avatar2} alt="course2" style={{width: '100%'}}/>
+                        <img src={avatar2} alt="course2" style={{width: '100%', width: '100%', height: '130px'}}/>
                         <div className="container"> 
                             <h4><b>Back End Course</b></h4>
                             <div>Learn .Net with us.</div>
