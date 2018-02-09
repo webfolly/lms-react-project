@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import StudentDetailView from "./StudentDetailView";
-import StudentCard from "./StudentCard";
-import avatar from '../images/img_avatar2.png';
+import CourseCard from "./CourseCard";
 
-export default class StudentsView extends Component {
+
+export default class CoursesView extends Component {
     constructor(props) {
         super(props);
     }
     render() {
+        return (
             <div className={'container-fluid'}>
-              <StudentCard />
+              <CourseCard />
             </div>
+        )
     }
 }
