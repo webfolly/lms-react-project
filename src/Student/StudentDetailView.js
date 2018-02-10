@@ -11,15 +11,45 @@ export default class StudentDetailView extends Component {
         super(props);
 
         this.state = {
-            id: props.match.params.id
+            id: props.match.params.id,
+
+            inputState: 'readOnly',
+            isEditing: true,
+            isSaving:
+                false,
+            isLoading:
+                false,
+            student: {
+                name: 'John Wu',
+                gender: 'male',
+                birthday: '12/12/1990'
+            }
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    getStudentById() {
+        let sid = this.state.id;
+        //TODO get student information by id
+
+    }
+
+    handleChange(event) {
+        let {name, value} = event.target;
+        console.log({name});
+        if (this.state.isEditing) {
+            this.setState({student: {...this.state.student, [name]: value}});
+        } else {
+            return;
         }
 
     }
 
+
     render() {
         return (
             <div>
-                <div className="row panel panel-success" style={ {marginTop : "2%"}}>
+                <div className="row panel panel-success" style={{marginTop: "2%"}}>
                     <div className="panel-heading lead">
                         <div className="row">
                             <div className="col-lg-8 col-md-8"><i className="fa fa-users"></i> View Student Details
@@ -60,7 +90,7 @@ export default class StudentDetailView extends Component {
                                             <div className="modal fade" id="PhotoOption" tabindex="-1" role="dialog"
                                                  aria-labelledby="myModalLabel" aria-hidden="true"
                                                  style={{display: 'none'}}>
-                                                <div className="modal-dialog" style={{width:'30%',height:'30%'}}>
+                                                <div className="modal-dialog" style={{width: '30%', height: '30%'}}>
                                                     <div className="modal-content">
                                                         <div className="modal-header">
                                                             <button type="button" className="close" data-dismiss="modal"
@@ -111,9 +141,9 @@ export default class StudentDetailView extends Component {
                                     </div>
                                     <div className="col-lg-9 col-md-9">
                                         <ul className="nav nav-tabs">
-                                            <li className="active"><Link data-toggle="tab" to="#Summery"
+                                            <li className="active"><Link data-toggle="tab" to="#Summary"
                                                                          className="text-success"><i
-                                                className="fa fa-indent"></i> Summery</Link></li>
+                                                className="fa fa-indent"></i> Summary</Link></li>
                                             <li><Link data-toggle="tab" to="#Contact" className="text-success"><i
                                                 className="fa fa-bookmark-o"></i> Contact Info</Link></li>
                                             <li><Link data-toggle="tab" to="#Address" className="text-success"><i
@@ -123,7 +153,7 @@ export default class StudentDetailView extends Component {
                                         </ul>
 
                                         <div className="tab-content">
-                                            <div id="Summery" className="tab-pane fade in active">
+                                            <div id="Summary" className="tab-pane fade in active">
 
                                                 <div className="table-responsive panel">
                                                     <table className="table">
@@ -131,10 +161,11 @@ export default class StudentDetailView extends Component {
 
                                                         <tr>
                                                             <td className="text-success"><i
-                                                                className="fa fa-user"></i> Full
-                                                                Name
+                                                                className="fa fa-user"></i> Full Name
                                                             </td>
-                                                            <td>Viddhyut Mall</td>
+                                                            <td><input className={'noborder-inputText'} type={'text'}
+                                                                       name={'name'} value={this.state.student.name}
+                                                                       onChange={this.handleChange} readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -158,7 +189,10 @@ export default class StudentDetailView extends Component {
                                                             <td className="text-success"><i
                                                                 className="fa fa-calendar"></i> Birthday
                                                             </td>
-                                                            <td>December 2, 2011</td>
+                                                            <td><input type={'text'} name={'birthday'}
+                                                                       className='noborder-inputText'
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.birthday} readOnly={!this.state.isEditing} /></td>
                                                         </tr>
 
                                                         <tr>
