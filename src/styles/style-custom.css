@@ -15,4 +15,6 @@ img {
 
 .container {
     padding: 2px 16px;
+    list-style: none;
 }
+

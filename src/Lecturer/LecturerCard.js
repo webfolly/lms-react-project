@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import StudentDetailView from "./LecturerDetailView";
-
+import LecturerDetailView from "./LecturerDetailView";
+import avatar from '../images/img_avatar2.png';
 
 export default class LecturersView extends Component {
     render() {
         return (
-            <div className='Lecturer'>
-                <ul>
+            <div className='card' sytle={{width: '40%'}}>
+                <ul className='container' sytle={{width: '50%'}}>
+                    <li>
+                        <img src={avatar} alt="Avatar" />
+                    </li>
                     <li className='name'>
                         Lecturer 1
                     </li>
@@ -18,7 +21,7 @@ export default class LecturersView extends Component {
                         Professor
                     </li>
                     <li className='occupation'>
-                        <Link to={'/students/detail/2'}>Details</Link>
+                        <Link to={'/lecturers/detail/2'}>Details</Link>
                     </li>
                   
                 </ul>
