@@ -8,19 +8,27 @@ export default class LecturersView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: false
+            lecturers: [{
+                id: 1,
+                name: 'Lecturer 1',
+                occupation: 'Professor'
+            },{
+
+            }]
         };
 
 
     }
+    componentWillMount() {
 
+    }
+
+    loadCourses() {
+
+    }
     render() {
-        return (
-            <div className={'container-fluid'}>
-              <LecturerCard />
-            </div>
-        );
-
+        return (this.state.lecturers.map(
+            lecturer => <LecturerCard lecturer={lecturer} />) )
     }
 
 
