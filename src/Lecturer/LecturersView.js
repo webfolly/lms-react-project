@@ -13,7 +13,9 @@ export default class LecturersView extends Component {
                 name: 'Lecturer 1',
                 occupation: 'Professor'
             },{
-
+                id: 2,
+                name: 'Lecturer 2',
+                occupation: 'Tutor'
             }]
         };
 
@@ -28,7 +30,11 @@ export default class LecturersView extends Component {
     }
     render() {
         return (this.state.lecturers.map(
-            lecturer => <LecturerCard lecturer={lecturer} />) )
+            lecturer => {
+                console.log(lecturer)
+                return <LecturerCard lecturer={lecturer} />
+            }
+            ) )
     }
 
 
