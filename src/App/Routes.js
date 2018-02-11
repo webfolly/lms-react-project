@@ -2,7 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import StudentsView from '../Student/StudentsView';
 import StudentDetailView from '../Student/StudentDetailView';
-import LecturersView from '../Lecturer/LecturerCard';
+import LecturersView from '../Lecturer/LecturersView';
 import LecturerDetailView from '../Lecturer/LecturerDetailView';
 
 
@@ -14,7 +14,6 @@ export default () => ((
         <Route exact path="/students" component={StudentsView} />
         <Route exact path="/students/detail/:id" component={StudentDetailView} />
         <Route exact path="/lecturers" component={LecturersView} />
-        <Route exact path="/lecturers/detail/:id" component={LecturerDetailView} />
-        <Route exact path="/signin" component={() => <p>signin</p>} />
+        
     </div>
     ));
