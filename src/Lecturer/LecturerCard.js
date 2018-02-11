@@ -3,16 +3,17 @@ import {Link} from 'react-router-dom';
 import LecturerDetailView from "./LecturerDetailView";
 import avatar from '../images/img_avatar2.png';
 
-import LecturerView from "./LecturersView";
-
-export default function LecturerCard(props) {
-    const lecturers = props.match.params.id;
-
+export default class LecturerCard extends Component {
+    render() {
+        
+    
+    const lecturers = this.props.lecturer;
+        console.log(lecturers);
     return (
         <div className='card' sytle={{width: '40%'}}>
             <ul className='container' sytle={{width: '50%'}}>
                 <li>
-                    <img src={avatar} alt="Avatar" />
+                 <img src={avatar} alt="Avatar" />
                 </li>
                 <li>
                     {`${lecturers.name}`}
@@ -30,4 +31,6 @@ export default function LecturerCard(props) {
             </ul>
         </div>
     );
+}
+
 }
