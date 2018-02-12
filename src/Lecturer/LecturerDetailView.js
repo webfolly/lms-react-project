@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {lecturer} from '../lecturerdata';
-
+import DetailForm from './DetailForm'; 
 import avatar from '../images/img_avatar2.png';
 
 export default class LecturerDetailView extends Component {
@@ -23,7 +23,7 @@ export default class LecturerDetailView extends Component {
             isEditing: false,
             isSaving: false,
             error: null,
-            lecturer: null
+            lecturer: lecturer
         };
     }
     componentWillMount() {
@@ -31,27 +31,11 @@ export default class LecturerDetailView extends Component {
 
     }
 
-
     renderDetailView() {
         const lecturer = this.state.lecturer;
         // console.log(lecturer)
         return (
-            <div className="form-group">
-                <form>
-                    <label>Name</label>
-                    <input type="text" className="form-control"  value={lecturer[0].name || ''} name="code" />
-                    <label>Occupation</label>
-                    <input type="text" className="form-control"  value={lecturer[0].occupation || ''} name="code"  />
-                    <label>School</label>
-                    <input type="text" className="form-control"  value={lecturer[0].school || ''} name="code"  />
-                    <label>Faculty</label>
-                    <input type="text" className="form-control"  value={lecturer[0].faculty || ''} name="code" />
-                    <label>Phone</label>
-                    <input type="text" className="form-control"  value={lecturer[0].phone || ''} name="code"  />
-                    <label>E-mail</label>
-                    <input type="text" className="form-control"  value={lecturer[0].email || ''} name="code" />
-                </form>
-            </div>
+            <DetailForm lecturer={lecturer}/>
             );        
     }
 
