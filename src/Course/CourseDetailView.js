@@ -39,7 +39,7 @@ export default class CourseDetailView extends React.Component{
                             <td className="text-success"><i
                                 className="fa fa-group"></i> Course ID
                             </td>
-                            <td>{this.state.course}</td>
+                            <td>{this.state.id}</td>
                         </tr>
                         <tr>
                             <td className="text-success"><i
