@@ -44,7 +44,6 @@ export default class DetailsTabs extends Component {
                         <div className="row">
                             <div className="col-lg-8 col-md-8"><i className="fa fa-users"></i> View Student Details
                             </div>
-
                         </div>
                     </div>
                     <div className="panel-body">
