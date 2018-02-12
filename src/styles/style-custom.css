@@ -16,3 +16,8 @@ img {
 .container {
     padding: 2px 16px;
 }
+
+.noborder-inputText{
+    border:none;
+}
+

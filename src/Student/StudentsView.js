@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import StudentDetailView from "./StudentDetailView";
 import StudentCard from "./StudentCard";
-import avatar from '../images/img_avatar2.png';
 
 export default class StudentsView extends Component {
     constructor(props) {
@@ -24,6 +22,11 @@ export default class StudentsView extends Component {
         return (
 
             <div className={'container-fluid'}>
+                <div className='row'>
+                    <div className='pull-right'>
+                        <Link className='btn btn-success' to={`/students/detail/create/0`} >+ Create</Link>
+                    </div>
+                </div>
                 {this.state.students.map(function (s) {
                     return <StudentCard key={s.id} student={s}/>
                 })
