@@ -1,0 +1,212 @@
+.topnav {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 10px 20px;
+    margin:0 0 0;
+    width: auto;
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);
+    z-index: 999;
+  }
+.topnav-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 250px;
+}
+.searchbar {
+   float: left;
+}
+.input-group {
+    display: inline-block;
+}
+.input-group > input {
+    float: left;
+    background: #fafafa;
+    padding: 2px 0 2px 8px;
+    line-height: 1.4;
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-right: none;
+    border-bottom:  1px solid #eee;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.input-group > input:focus {
+    outline: none;
+}
+.input-group-btn {
+    float: left;
+    border-left: none;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #fafafa;
+    font-size: 14px;
+    color: #333333;
+    padding: 3px 10px;
+}
+.input-group-btn:focus {
+    outline: none;
+}
+.input-group-btn:hover {
+    cursor: pointer;
+}
+.topnav label {
+    color: #333;
+}
+.radio-group span {
+    color: #999;
+}
+.radio-group {
+    float: left;
+    margin: 0 20px;
+}
+
+.student-view {
+    margin-top:60px;
+    margin-right: 5px;
+    box-shadow: 0 1px 4px  rgba(0, 0, 0, 0.2);
+}
+.student-item {
+    position: relative;
+    padding:5px;
+    background: #fff;
+    margin-bottom:5px; 
+    border-bottom: 1px solid #eee;
+    transition: all 0.2s ease-in-out;
+}
+.student-item:hover {
+   
+    box-shadow: 0 1px 4px  rgba(0, 0, 0, 0.2),0 -1px 4px rgba(0, 0, 0, 0.2);
+}
+.hover-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background:#00CE6F;
+    float: left;
+    visibility: hidden;
+}
+.student-item:hover .hover-border{
+    visibility: visible;
+}
+/* sytle of avatar in student view */
+.student-view-avatar {
+    float:left;
+    padding:5px 10px;
+    margin-top: 10px;
+}
+.student-view-avatar-wrapper {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    overflow:hidden;
+}
+.student-view-avatar-image {
+    width:100%;
+    height:100%;
+}
+
+/*style of student item */
+.itemProfile {
+    float: left;
+    padding: 0 5px;
+}
+.itemProfile h4{
+    color: rgb(58, 48, 99);
+    margin: 10px auto;
+}
+.itemProfile div span{
+    color: #999;
+    font-size: 0.9em;
+    padding-right: 10px;
+    margin-right: 15px;
+    border-right: 1px solid #ccc;
+}
+.btn-group {
+    float: right;
+    margin-top: 20px;
+}
+.topnav::before,.student-detail::before,.student-detail-container::before{
+    content: "";
+    display: table;
+}
+.topnav::after,.student-item::after,.input-group::after {
+    content:"";
+    display: block;
+    clear: both;
+}
+.btn-circle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.33;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 5px;
+    z-index: 999;
+}
+.btn-circle > i{
+    z-index: 1000;
+}
+.btn-circle:hover {
+    cursor: pointer;
+    border: 2px solid #00CE6F;
+    color: #00CE6F;
+}
+.topnav-btn-group {
+   float: right;
+   margin-left: 480px;
+ 
+}
+.btn-square {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding: 4px 0px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 1;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid transparent;
+    margin: 0 10px;
+}
+.btn-square:hover {
+    color: #00CE6F; 
+}
+.student-detail{
+    margin-top:0;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.input-wrapper {
+    margin: 20px 40px;
+}
+.input-label{
+    font-size: 0.8em;
+    color: #aaa;
+}
+.input-component {
+    padding-bottom: 10px;
+    font-size: 1.1em;
+}
+.input-component:focus {
+    outline: none;
+}
+.border-bottom{
+    border:none;
+    border-bottom: 1px solid #ccc;
+}
+.student-detail-container{
+    display: inline-block;
+}
