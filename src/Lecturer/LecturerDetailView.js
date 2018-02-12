@@ -31,8 +31,10 @@ export default class LecturerDetailView extends Component {
 
     }
 
-    LecturerDetailView(props) {
 
+    renderDetailView() {
+        const lecturer = this.state.lecturer;
+        // console.log(lecturer)
         return (
             <div className="form-group">
                 <form>
@@ -57,65 +59,7 @@ export default class LecturerDetailView extends Component {
         // const {isLoading, isEditing, lecturer} = this.state;
         // if(isLoading) {
         //    return(<h2>Loading...</h2>)
-        return (
-             <LecturerDetailView lecturer={this.state.lecturer}/>
-        );
-        }
-
-        //return isEditing ?
-        //this.renderForm(lecturers) : this.renderDisplay(lecturers)
-
-        // return (
-        // <div className="form-group">
-        //     <label>Name</label>
-        //     <input type="text" className="form-control"  value={lecturer[0].name || ''} name="code" onChange={this.handleInputChange} />
-        //     <label>Occupation</label>
-        //     <input type="text" className="form-control"  value={lecturer[0].occupation || ''} name="code" onChange={this.handleInputChange} />
-        //     <label>School</label>
-        //     <input type="text" className="form-control"  value={lecturer[0].school || ''} name="code" onChange={this.handleInputChange} />
-        //     <label>Faculty</label>
-        //     <input type="text" className="form-control"  value={lecturer[0].faculty || ''} name="code" onChange={this.handleInputChange} />
-        //     <label>Phone</label>
-        //     <input type="text" className="form-control"  value={lecturer[0].phone || ''} name="code" onChange={this.handleInputChange} />
-        //     <label>E-mail</label>
-        //     <input type="text" className="form-control"  value={lecturer[0].email || ''} name="code" onChange={this.handleInputChange} />
-        // </div>
-        // )
-        //return (
-        // <div className='lecturercard'>
-        //         <div className='image'>
-        //             <img src={avatar} alt="Avatar" />
-        //         </div>
-        //         <div className='container'>
-        //             <ul>
-        //                 <li>
-        //                     {`${this.state.name}`}
-        //                 </li>
-        //                 <li>
-        //                     {`${this.state.id}`}
-        //                 </li>
-        //                 <li>
-        //                     {this.state.occupation}
-        //                 </li>
-        //                 <li>
-        //                     {this.state.school}
-        //                 </li>
-        //                 <li>
-        //                     {this.state.faculty}
-        //                 </li>
-        //                 <li>
-        //                     {this.state.phone}
-        //                 </li>
-        //                 <li>
-        //                     {this.state.email}
-        //                 </li>
-
-        //             </ul>
-        //         </div>    
-
-        // </div>
-
-        
-    //)
+       return this.renderDetailView()
+    }
 }
 
