@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { fetchCourses } from '../api/course';
+import CoursesCard from 'CoursesCard';
 export default class CoursesView extends React.Component {
     constructor(props) {
         super(props);
@@ -15,6 +16,11 @@ export default class CoursesView extends React.Component {
     }
 
     componentWillMount() {
+        fetchCourses()
+        .then()
+        .catch(error => {
+            this.setState({error})
+        })
 
     }
 
@@ -23,6 +29,9 @@ export default class CoursesView extends React.Component {
     }
 
     render() {
+        if(this.state.error) {
+            return <span>Some error </span>
+        }
         this.state.courses.map(course => <CoursesCard />)
     }
 }
