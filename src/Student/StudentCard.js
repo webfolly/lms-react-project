@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import StudentDetailView from "./StudentDetailView";
 import avatar from '../images/img_avatar2.png';
 
-export default class StudentsView extends Component {
+export default class StudentCard extends Component {
 
 
     render() {
@@ -15,7 +15,16 @@ export default class StudentsView extends Component {
                         <h4><b>{this.props.student.name}</b></h4>
                         <div>Interior Designer</div>
                         <p>Students Views</p>
-                        <p><Link to={`/students/detail/${this.props.student.id}`}>Details</Link></p>
+                        <p>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <Link to={`/students/detail/view/${this.props.student.id}`}
+                                      className="btn btn-success btn-sm btn-default"><i
+                                    className="fa fa-eye fa-1x"></i></Link>
+                                <Link to={`/students/detail/edit/${this.props.student.id}`}
+                                      className="btn btn-success btn-sm btn-default"><i
+                                    className="fa fa-edit fa-1x"></i></Link>
+                            </div>
+                        </p>
                     </div>
                 </div>
             </div>
