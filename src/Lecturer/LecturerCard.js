@@ -10,25 +10,41 @@ export default class LecturerCard extends Component {
     const lecturers = this.props.lecturer;
         console.log(lecturers);
     return (
-        <div className='card' sytle={{width: '40%'}}>
-            <ul className='container' sytle={{width: '50%'}}>
-                <li>
-                 <img src={avatar} alt="Avatar" />
-                </li>
-                <li>
-                    {`${lecturers.name}`}
-                </li>
-                <li>
-                    {`${lecturers.id}`}
-                </li>
-                <li>
-                    {`${lecturers.occupation}`}
-                </li>
-                <li className='occupation'>
-                    <Link to={'/lecturers/detail/2'}>Details</Link>
-                </li>
-            
-            </ul>
+        <div className='lecturercard'>
+                <div className='image'>
+                    <img src={avatar} alt="Avatar" />
+                </div>
+                <div className='container'>
+                    <ul>
+
+                        <li>
+                            {`${lecturers.name}`}
+                        </li>
+                        <li>
+                            {`${lecturers.id}`}
+                        </li>
+                        <li>
+                            {`${lecturers.occupation}`}
+                        </li>
+                        <li>
+                            {`${lecturers.school}`}
+                        </li>
+                        <li>
+                            {`${lecturers.faculty}`}
+                        </li>
+                        <li>
+                            {`${lecturers.phone}`}
+                        </li>
+                        <li>
+                            {`${lecturers.email}`}
+                        </li>
+                        <li className='occupation'>
+                            <Link to={'/lecturers/detail/2'}>Details</Link>
+                        </li>
+
+                    </ul>
+                </div>    
+
         </div>
     );
 }
