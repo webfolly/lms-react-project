@@ -22,6 +22,11 @@ export default class StudentsView extends Component {
         return (
 
             <div className={'container-fluid'}>
+                <div className='row'>
+                    <div className='pull-right'>
+                        <Link className='btn btn-success' to={`/students/detail/create/0`} >+ Create</Link>
+                    </div>
+                </div>
                 {this.state.students.map(function (s) {
                     return <StudentCard key={s.id} student={s}/>
                 })
