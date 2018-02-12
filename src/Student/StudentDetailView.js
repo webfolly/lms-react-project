@@ -11,7 +11,7 @@ export default class StudentDetailView extends Component{
         super(props);
 
         this.state = {
-            id : props.match.params.id
+            // id : props.match.params.id
         }
 
     }
