@@ -12,10 +12,6 @@ export default class StudentDetailView extends Component {
     constructor(props) {
         super(props);
 
-<<<<<<< HEAD
-        this.state = {
-            // id : props.match.params.id
-=======
 
         console.log(props.match.params.action);
         this.loadStudentDetail = this.loadStudentDetail.bind(this);
@@ -73,7 +69,6 @@ export default class StudentDetailView extends Component {
                     birthday: ''
                 }
             });
->>>>>>> master
         }
 
 

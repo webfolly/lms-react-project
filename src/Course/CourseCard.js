@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-/**
- * Created by Weiping on 18/11/17.
- */
-export default function CourseCard(props) {
-    const course = props.course;
-    return (
-        <p>{`This is a ${course.name}`}</p>
-    )
-=======
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import CourseDetailView from "./CourseDetailView";
@@ -28,5 +18,4 @@ export default function CourseCard(props) {
                 </div> 
             </div>       
     );
->>>>>>> master
 }

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, {Component} from 'react';
 import CoursesView from './CoursesView';
 import CourseCard from './CourseCard';
@@ -83,4 +81,3 @@ export default class CourseDetailView extends React.Component{
         )
     }
 }
->>>>>>> master
