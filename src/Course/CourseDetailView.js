@@ -9,57 +9,68 @@ import {
 } from 'react-router-dom';
 
 export default class CourseDetailView extends React.Component{
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            id: props.match.params.id
-        }
+            isLoading: false,
+            isEditing: false,
+            isSaving: false,
+            error: null,
+            course: null
+        };
     }
 
     render(){
+        const {isLoading, isEditing, course} = this.state;
+        if (isLoading) {
+            return <h3>Loading details...</h3>;
+        }
+        
+        //return isEditing ?
+        // this.renderForm(course) : this.renderDisplay(course)
+            
         return (
             <div className="tab-content">
-            <div id="Summery" className="tab-pane fade in active">
+            <div id="Summary" className="tab-pane fade in active">
                 <div className="table-responsive panel">
                     <table className="table">
                         <tbody>
                         <tr>
                             <td className="text-success"><i
-                                className="fa fa-user"></i> Full Name
+                                className="fa fa-group"></i> Course ID
                             </td>
-                            <td>Viddhyut Mall</td>
+                            <td>{this.state.course}</td>
                         </tr>
                         <tr>
                             <td className="text-success"><i
-                                className="fa fa-list-ol"></i> Scholar Number
+                                className="fa fa-group"></i> Course Name
                             </td>
-                            <td>45</td>
+                            <td>{this.state.name}</td>
                         </tr>
                         <tr>
                             <td className="text-success"><i
-                                className="fa fa-book"></i> Medium
+                                className="fa fa-group"></i> Description
                             </td>
-                            <td>English</td>
+                            <td>{this.state.desc}</td>
                         </tr>
                         <tr>
                             <td className="text-success"><i
-                                className="fa fa-group"></i> className &amp; Section
+                                className="fa fa-calendar"></i> Start Date
                             </td>
-                            <td>12-F</td>
+                            <td>2017.10.12</td>
                         </tr>
                         <tr>
                             <td className="text-success"><i
-                                className="fa fa-calendar"></i> Birthday
+                                className="fa fa-calendar"></i> End Date
                             </td>
-                            <td>December 2, 2011</td>
+                            <td>2018.10.12</td>
                         </tr>
-
                         <tr>
                             <td className="text-success"><i
-                                className="fa fa-university"></i> School
+                                className="fa fa-edit"></i> Edit
                             </td>
                             <td>
-                                Shyama Mall Girls Inter College
+                                <Link to="/courses/create" className="btn btn-lg btn-primary" >Add new course</Link>
                             </td>
                         </tr>
                         </tbody>

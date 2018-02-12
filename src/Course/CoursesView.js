@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import CourseCard from "./CourseCard";
 import CourseDetailView from "./CourseDetailView";
+import axios from "axios";
 
 export default class CoursesView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: false,
             courses: [
                 {
                 id: 1,
@@ -19,14 +21,25 @@ export default class CoursesView extends React.Component {
                 description: `Learn`
                 }
             ]
-        }
+        };
     }
 
-    componentWillMount() {
+    //loadCourses() {
+    //    this.setState({isLoading: true});
+    //    axios.get('/api/courses')
+    //        .then(response => {
+    //            this.setState({
+    //
+    //            });
+    //        });
+    //}
 
-    }
+    //componentWillMount() {
+    //    this.loadCourses();
+    //}
 
     render() {
+
         return (
             <div className={'container-fluid'}>
                 <div className='row'>
