@@ -9,7 +9,7 @@ export default class LecturersView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lecturers: []
+            lecturers: lecturer
         };
 
 
