@@ -10,12 +10,21 @@ export default class LecturersView extends Component {
         this.state = {
             lecturers: [{
                 id: 1,
-                name: 'Lecturer 1',
-                occupation: 'Professor'
+                name: 'Jane Hunter',
+                occupation: 'Professor',
+                school: 'School of Information Technology and Electrical Engineering',
+                faculty: 'Faculty of Engineering, Architecture and Information Technology',
+                phone: '+61 7 336 51092',
+                email: 'jane@itee.uq.edu.au'
+
             },{
                 id: 2,
-                name: 'Lecturer 2',
-                occupation: 'Tutor'
+                name: 'Xue Li',
+                occupation: 'Professor',
+                school: 'School of Information Technology and Electrical Engineering',
+                faculty: 'Faculty of Engineering, Architecture and Information Technology',
+                phone: '+61 7 336 52379',
+                email: 'xueli@itee.uq.edu.au'
             }]
         };
 
@@ -29,12 +38,24 @@ export default class LecturersView extends Component {
 
     }
     render() {
-        return (this.state.lecturers.map(
-            lecturer => {
-                console.log(lecturer)
-                return <LecturerCard lecturer={lecturer} />
+        return (
+            <div className={'container-fluid'} >
+            {this.state.lecturers.map(function (l){
+                return <LecturerCard key={l.id} lecturer={l} />
+                    
+            })
             }
-            ) )
+            </div>    
+            
+            // this.state.lecturers.map(
+            // lecturer => {
+            //     console.log(lecturer)
+            //     return <LecturerCard lecturer={lecturer} />
+            // }
+            // ) 
+            
+
+        )
     }
 
 
