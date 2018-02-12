@@ -143,22 +143,34 @@ export default class DetailsTabs extends Component {
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
-                                                                className="fa fa-list-ol"></i> Scholar Number
+                                                                className="fa fa-user"></i> Gender
                                                             </td>
-                                                            <td>45</td>
+                                                            <td><input className={'noborder-inputText'} type={'text'}
+                                                                       name={'gender'} value={this.state.student.gender}
+                                                                       onChange={this.handleChange}
+                                                                       readOnly={!this.state.isEditing}/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-list-ol"></i>Student code
+                                                            </td>
+                                                            <td><input type={'text'} name={'language'}
+                                                                       className='noborder-inputText'
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.studentcode}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-book"></i> Language
                                                             </td>
-                                                            <td>English</td>
+                                                            <td><input type={'text'} name={'language'}
+                                                                       className='noborder-inputText'
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.language}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="fa fa-group"></i> className &amp; Section
-                                                            </td>
-                                                            <td>12-F</td>
-                                                        </tr>
+
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-calendar"></i> Birthday
@@ -174,9 +186,11 @@ export default class DetailsTabs extends Component {
                                                             <td className="text-success"><i
                                                                 className="fa fa-university"></i> School
                                                             </td>
-                                                            <td>
-                                                                Shyama Mall Girls Inter College
-                                                            </td>
+                                                            <td><input type={'text'} name={'school'}
+                                                                       className='noborder-inputText'
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.school}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -195,9 +209,43 @@ export default class DetailsTabs extends Component {
                                                             <td>
 
                                                                 <strong>
-                                                                    C-***, Amahiya </strong><br/>
-                                                                Kharobar, ****** <br/>
+                                                                    C-***, Amahiya </strong>
                                                                 Gorakhpur, Utter Pradesh, India<br/>
+
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-home"></i> City/Suburb
+                                                            </td>
+                                                            <td>
+
+                                                                <strong>
+                                                                    Kharobar, ****** <br/></strong>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-home"></i> State
+                                                            </td>
+                                                            <td>
+
+                                                                <strong>
+                                                                    Utter Pradesh<br/></strong>
+
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-home"></i> Country
+                                                            </td>
+                                                            <td>
+
+                                                                <strong>
+                                                                    India<br/></strong>
 
                                                             </td>
                                                         </tr>
@@ -205,6 +253,7 @@ export default class DetailsTabs extends Component {
                                                     </table>
                                                 </div>
                                             </div>
+
                                             <div id="Contact" className="tab-pane fade">
                                                 <div className="table-responsive panel">
                                                     <table className="table">
@@ -232,34 +281,6 @@ export default class DetailsTabs extends Component {
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
-                                                                className="fa fa-user"></i> Father's
-                                                                Name
-                                                            </td>
-                                                            <td>Ajay Mall</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="glyphicon glyphicon-phone"></i> Father's
-                                                                Mobile
-                                                            </td>
-                                                            <td>+91 99********</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="fa fa-user"></i> Mother's
-                                                                Name
-                                                            </td>
-                                                            <td>Hemlata Mall</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="glyphicon glyphicon-phone"></i> Mother's
-                                                                Mobile
-                                                            </td>
-                                                            <td>+91 90********</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
                                                                 className="fa fa-user"></i> Emergency Contact Person
                                                             </td>
                                                             <td>Pawan Mall</td>
@@ -283,23 +304,10 @@ export default class DetailsTabs extends Component {
                                                         <tbody>
                                                         <tr>
                                                             <td className="text-success"><i
-                                                                className="fa fa-university"></i> Last School
-                                                            </td>
-                                                            <td>Pawan Mall's School</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
                                                                 className="fa fa-calendar"></i> Date
                                                                 of Admission
                                                             </td>
                                                             <td>March 4, 2009</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="fa fa-home"></i> Birth
-                                                                Place
-                                                            </td>
-                                                            <td>Delhi</td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -318,12 +326,6 @@ export default class DetailsTabs extends Component {
                                                                 className="fa fa-thumbs-up"></i> Active/Inactive
                                                             </td>
                                                             <td>Student is Active</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="glyphicon glyphicon-time"></i> Last Editing
-                                                            </td>
-                                                            <td>2015-08-20 09:41:56</td>
                                                         </tr>
 
                                                         </tbody>

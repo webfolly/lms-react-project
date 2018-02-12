@@ -32,9 +32,13 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'1',
                     name: 'John Wu',
                     gender: 'male',
-                    birthday: '12/12/1990'
+                    birthday: '12/12/1990',
+                    school:'Grammar College',
+                    language:'English',
+                    studentcode:'s0001'
                 }
             });
         } else if (action === 'view') {
@@ -48,9 +52,13 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'1',
                     name: 'John Wu',
                     gender: 'male',
-                    birthday: '12/12/1990'
+                    birthday: '12/12/1990',
+                    school:'Grammar College',
+                    language:'English',
+                    studentcode:'s0001'
                 }
             });
         } else {
@@ -64,9 +72,13 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'',
                     name: '',
                     gender: '',
-                    birthday: ''
+                    birthday: '',
+                    school:'',
+                    language:'',
+                    studentcode:''
                 }
             });
         }
@@ -104,9 +116,15 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'',
                     name: '',
                     gender: '',
-                    birthday: ''
+                    birthday: '',
+                    school:'',
+                    language:'',
+                    studentcode:''
+
+
                 }
             }} action={'create'}/>
         }
