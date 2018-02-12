@@ -14,6 +14,7 @@ export default () => ((
         <Route exact path="/students" component={StudentsView} />
         <Route exact path="/students/detail/:id" component={StudentDetailView} />
         <Route exact path="/lecturers" component={LecturersView} />
+        <Route exact path="/lecturers/detail/:id" component={LecturerDetailView} />
         
     </div>
     ));
