@@ -39,7 +39,7 @@ export default class DetailsTabs extends Component {
 
         return (
             <div>
-                <div className="row panel panel-success" style={{marginTop: "2%"}}>
+                <div className="row panel panel-success" style={{marginTop: "2%",marginLeft:0,marginRight:0}}>
                     <div className="panel-heading lead">
                         <div className="row">
                             <div className="col-lg-8 col-md-8"><i className="fa fa-users"></i> View Student Details
