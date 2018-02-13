@@ -43,6 +43,9 @@ export default class CoursesView extends React.Component {
         return (
             <div className={'container-fluid'}>
                 <div className='row'>
+                    <div className='pull-right'>
+                        <Link className='btn btn-success' to={`/courses/detail/create/0`} >+ Create</Link>
+                    </div>
                     {this.state.courses.map(course => <CourseCard key={course.id} course={course}/>)}
                 </div>
             </div>
