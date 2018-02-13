@@ -5,7 +5,7 @@ import {
     Link
 } from 'react-router-dom';
 import { lecturer } from '../lecturerdata';
-
+import axios from 'axios';
 
 export default class DetailForm extends Component {
     
