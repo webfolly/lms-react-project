@@ -63,7 +63,7 @@ export default function TopNav(props) {
            </form>
           </div>
 			    <div className="topnav-btn-group">
-				    <Link to={'/students/detail/create'}> <button className="btn-square"><i className="fa fa-plus"></i></button> </Link>
+				    <Link to={'/students/detail/create/0'}> <button className="btn-square"><i className="fa fa-plus"></i></button> </Link>
 			    </div>
       </div>
     );
