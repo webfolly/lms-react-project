@@ -4,19 +4,8 @@ import CourseCard from "./CourseCard";
 import CourseDetailView from "./CourseDetailView";
 import axios from "axios";
 import '../styles';
+import {fetchCourses} from '../api/course';
 
-let courses= [
-    {
-    id: 1,
-    name: `React 101`,
-    desc: `Learn`
-    },
-    {
-    id: 2,
-    name: `React 201`,
-    desc: `Learn`
-    }
-];
 
 export default class CoursesView extends React.Component {
     constructor(props) {
@@ -27,18 +16,15 @@ export default class CoursesView extends React.Component {
         };
     }
 
-    //loadCourses() {
-    //    this.setState({isLoading: true});
-    //    axios.get('/api/courses')
-    //        .then(response => {
-    //            this.setState({
-    //
-    //            });
-    //        });
-    //}
+    loadCourses(){
+        this.setState({isLoading:true});
+        fetchCourses()
+            .then(response => this.setState({courses:response.data,isLoading:false}))
+    }
+
 
     componentWillMount() {
-        this.setState({courses});
+        this.loadCourses();
     }
 
     render() {
@@ -49,11 +35,8 @@ export default class CoursesView extends React.Component {
                     <div className='pull-right'>
                         <Link className='btn btn-success' to={`/courses/detail/create/0`} >+ Create</Link>
                     </div>
-
-
-                    
-                    {this.state.courses.map(course => <CourseCard key={course.id} course={course}/>)}
                 </div>
+                    {this.state.courses.map(course => <CourseCard key={course.id} course={course}/>)}
             </div>
         )
     }
