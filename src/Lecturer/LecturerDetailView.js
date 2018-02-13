@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 //import {lecturer} from '../lecturerdata';
 //import DetailForm from './DetailForm'; 
-import avatar from '../images/img_avatar2.png';
+//import avatar from '../images/img_avatar2.png';
 //import lecturer from '../api/lecturer';
 
-import {fetchLecturers,  fetchLecturersByID} from '../api/lecturer';
+//import {fetchLecturers,  fetchLecturersByID} from '../api/lecturer';
 
 export default class LecturerDetailView extends Component {
     
@@ -21,6 +21,7 @@ export default class LecturerDetailView extends Component {
         //     phone: props.match.params.phone,
         //     email: props.match.params.email
         //  }
+
         this.state = {
             lecturer: []
         };

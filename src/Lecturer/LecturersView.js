@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import TopNav from '../App/TopNav';
+//import {Spinner} from '../UI/UIComponents';
 import LecturerDetailView from "./LecturerDetailView";
 import LecturerCard from "./LecturerCard";
-import avatar from '../images/img_avatar2.png';
+
 //import {lecturer} from "../lecturerdata";
-import axios from 'axios';
+import '../styles';
 
 import {fetchLecturers, fetchLecturersByID} from '../api/lecturer';
 
@@ -12,30 +14,50 @@ export default class LecturersView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lecturers: []
+            error: null,
+            lecturers: [],
+            isLoading: false
         };
 
         // this.handleLecturerData = this.handleLecturerData.bind(this);
 
     }
-    componentWillMount() {
+
+    GetLecturers() {
+        this.setState({isLoading:true});
         fetchLecturers()
-        .then(
-            data => this.setState({lecturers: data}))
-        .catch(function (error) {
-            if(error.response) {
-                console.log("There is an error in the lecturer data", error)
-            }
-        } )    
+            .then(response => this.setState({lecturers:response.data, isLoading:false}))
+            .catch(error => this.setState({error}));         
+    }
+
+    GetLecturersByID(id) {
+        this.setState({isLoading:true});
+        fetchLecturersByID(id)
+            .then(response => this.setState({isLoading:false,lecturers:[response.data]}))
+            .catch(error => this.setState({error}));
+    }
 
 
-        fetchLecturersByID(this.state.lecturers)
-        .then(
-            data1 => this.setState({lecturers: data1.id}))
-        .catch(function (error) {
-            console.log("There is an error in the lecuturer in the lecturer id data", error)
-        })
 
+    componentWillMount() {
+        // fetchLecturers()
+        // .then(
+        //     data => this.setState({lecturers: data}))
+        // .catch(function (error) {
+        //     if(error.response) {
+        //         console.log("There is an error in the lecturer data", error)
+        //     }
+        // } )    
+
+
+        // fetchLecturersByID(this.state.lecturers)
+        // .then(
+        //     data1 => this.setState({lecturers: data1.id}))
+        // .catch(function (error) {
+        //     console.log("There is an error in the lecuturer in the lecturer id data", error)
+        // })
+
+        this.GetLecturers();
     }
 
     // handleLecturerData(data) {
@@ -49,18 +71,22 @@ export default class LecturersView extends Component {
     // }
 
     render() {
-        return (
-            <div className={'container-fluid'} >
-            {this.state.lecturers.map(function (l){
-                return <LecturerCard key={l.id} lecturer={l} />
-                    
-            })
-            }
-            </div>    
+        if(this.state.isLoading){
+            return <Spinner />
+        }else if(this.state.error){
+            return <span>something error</span> 
+        }else{
+            return (
+                <div className={'container-fluid'} >
+                    {this.state.lecturers.map(function (l){
+                        return <LecturerCard key={l.id} lecturer={l} />
+                   
+                        }
+                    )
+                }
+                </div>    
+            )
+        }
 
-
-        )
     }
-
-
 }

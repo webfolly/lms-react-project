@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import LecturerDetailView from "./LecturerDetailView";
-import avatar from '../images/img_avatar2.png';
+//import {avatar} from '../UI/UIComponents';
 
 export default class LecturerCard extends Component {
     render() {
