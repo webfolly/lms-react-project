@@ -1,34 +1,34 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {Avatar} from '../UI/UIComponents';
 import {Link} from 'react-router-dom';
-import StudentDetailView from "./StudentDetailView";
-import avatar from '../images/img_avatar2.png';
 
-export default class StudentCard extends Component {
-
-
-    render() {
-        return (
-            <div className='col-sm-3 col-md-3 col-lg-3'>
-                <div className="card" style={{width: '100%', marginTop: '15px'}}>
-                    <img src={avatar} alt="Avatar" style={{width: '100%'}}/>
-                    <div className="container">
-                        <h4><b>{this.props.student.name}</b></h4>
-                        <div>Interior Designer</div>
-                        <p>Students Views</p>
-                        <p>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <Link to={`/students/detail/view/${this.props.student.id}`}
-                                      className="btn btn-success btn-sm btn-default"><i
-                                    className="fa fa-eye fa-1x"></i></Link>
-                                <Link to={`/students/detail/edit/${this.props.student.id}`}
-                                      className="btn btn-success btn-sm btn-default"><i
-                                    className="fa fa-edit fa-1x"></i></Link>
-                            </div>
-                        </p>
-                    </div>
-                </div>
+function StudentProfile(props) {
+    let student = props.student;
+    return( 
+        <div className="itemProfile">
+            <h4>{`${student.firstName} ${student.lastName}`}</h4>
+            <div> 
+                <span> <strong>Student_ID:</strong>  {student.id} </span>
+                <span> <strong>Country:</strong> {student.country} </span>
+                <span> <strong>Email Address:</strong> {student.email} </span>
+                <span> <strong>Mobile:</strong> {student.mobile} </span>
+                <span> <strong>Creidt Points Achieved:</strong> {student.creditsAchieved} </span>
             </div>
-        );
-
-    }
+        </div>
+    );     
+}
+export default function StudentItem(props) {
+    let student = props.student;
+    return(
+        <div className="student-item">
+            <span className="hover-border"></span>
+            <Avatar src={'./img/Zuckerberg.png'} style={{l1:"student-view-avatar",l2:"student-view-avatar-wrapper",l3:"student-view-avatar-image"}}/>
+            <StudentProfile student={student} />
+            <div className="btn-group">
+                <button className="btn-circle" value={student.id} onClick={props.onClick}> <i className="fa fa-times"></i></button>
+                <Link to={`/students/detail/edit/${student.id}`}> <button className="btn-circle"> <i className="fa fa-edit"></i></button> </Link>
+                <button className="btn-circle"> <i className="fa fa-info"></i></button>
+            </div>
+        </div>
+    );
 }

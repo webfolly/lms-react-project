@@ -5,6 +5,9 @@ import {
 } from 'react-router-dom';
 import './styles';
 import App from './App';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://lmswebapidemo.azurewebsites.net/api';
 
 ReactDOM.render(
 	<Router>
