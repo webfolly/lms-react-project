@@ -1,4 +1,118 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  padding: 80px 10px;
-  background-color: #fff;
+  margin: 0;
+  font-family: 'Helvetica Neue',Helvetica,Arial,'sans-serif';
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fafafa;
+}
+.wf-container {
+  position: relative;
+  margin-left: 255px;
+}
+nav.wf-navbar {
+  width: 250px;
+  background: rgb(37, 41, 46) url('../UI/img/bg.png') no-repeat;
+  background-size: cover;
+  height: 100%;
+  overflow: auto;
+}
+.wf-navbar-fixed-left {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.wf-navbar-header {
+  background:rgb(34, 37, 42);
+}
+.wf-navbar-brand {
+  color:#fff;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  height: 100%;
+}
+.wf-navbar-brand p {
+  margin: 10px auto;
+}
+.wf-navbar-block {
+  padding: 15px 15px 0 15px;
+}
+.user-profile {
+  padding-bottom: 15px;
+  border-bottom:1px solid rgba(107, 108, 109, 0.5);
+}
+.imgwrapper {
+  width: 70px;
+  height: 70px;
+  float: left;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.imgwrapper img {
+  width: 100%;
+  height: 100%;
+}
+.user-info {
+  width: 50%;
+  float: left;
+  margin: 15px;
+}
+.user-info  p {
+  margin: 0;
+  color: #fafafa;
+  font-size: 1.2em;
+  text-align: center;
+}
+.user-info div {
+  color: #999;
+  text-align: center;
+}
+.main-menu .menu-list {
+  margin: 10px 0;
+  padding: 0;
+}
+.main-menu .menu-list li{
+  list-style-type: none;
+  padding: 15px 30px;
+ /* border-bottom: 1px solid rgba(107, 108, 109, 0.19);*/
+}
+.main-menu .menu-list li a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.main-menu .menu-list li a:hover {
+  cursor: pointer;
+}
+.main-menu .menu-list li:hover {
+  background: rgb(34, 37, 42);
+}
+.navbar-footer {
+  padding: 40px 15px 0 15px;
+  }
+.footer-content {
+  padding: 15px 15px 0 15px;
+  border-top: 1px solid rgba(107, 108, 109, 0.5);
+}
+.copyright {
+  text-align: center;
+  color: #999;
+  font-size: 0.7em;
+  margin: 10px 10px 0 10px;
+}
+.footer-content div > span {
+  margin: 0 10px;
+  color: #999;
+}
+.wf-navbar-header::before {
+  content: "";
+  display: table;
+}
+.user-profile::after {
+  display: block;
+  content: "";
+  clear: both;
 }
