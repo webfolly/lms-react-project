@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import LecturerDetailView from "./LecturerDetailView";
 //import {avatar} from '../UI/UIComponents';
+import {avatar} from '../images/img_avatar2.png';
 
 export default class LecturerCard extends Component {
     render() {
