@@ -1,42 +1,90 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import StudentCard from "./StudentCard";
+import TopNav from '../App/TopNav';
+import StudentItem from './StudentCard';
+import {Spinner} from '../UI/UIComponents';
+import {fetchStudents,fetchStudent,deleteStudent} from '../api/student';
+import '../styles';
 
-export default class StudentsView extends Component {
+function StudentsList(props) {
+    let studentLists = props.students.map(
+        item => <Link to={`/students/detail/view/${item.id}`} key={item.id}><StudentItem student={item} onClick={props.onClick}/></Link>
+    );
+    return(
+        <div className="student-view">
+            {studentLists}
+        </div>
+    );
+}
+export default class StudentsView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            students: [
-                {id: 1, name: 'Mike Nud', gender: 'm'},
-                {id: 2, name: 'Luke Lanny', gender: 'm'},
-                {id: 3, name: 'Joe Danny', gender: 'm'},
-                {id: 4, name: 'John Bon', gender: 'm'},
-                {id: 4, name: 'Peter Latasha', gender: 'm'}
-            ]
+            error:null,
+            isLoading:false,//when Loading data display a spinner
+            students:[],
+            searchString:'',
+            idChecked:true
+        };
+        this.handleInputChage = this.handleInputChage.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    LoadStudents(){
+        this.setState({isLoading:true});
+        fetchStudents()
+            .then(response => this.setState({students:response.data,isLoading:false}))
+            .catch(error => this.setState({error}));
+    }
+    GetStudentById(id) {
+        this.setState({isLoading:true});
+        fetchStudent(id)
+            .then(response => {this.setState({isLoading:false,students:[response.data]})})
+            .catch(error => this.setState({error}));
+    }
+    DeleteStudentById(id) {
+        this.setState({isLoading:true});
+        deleteStudent(id)
+            .then(response => { if(response.status===200) this.setState({isLoading:false})})
+            .catch(error => this.setState({error}));
+    }
+    handleClick(event){
+        const name = event.target.name;
+        const value = event.target.value;
+        console.log(value);
+        event.preventDefault();
+        if(window.confirm(`Student will be deleted.Confirm to continue..`)) {
+            this.DeleteStudentById(value);
+        } 
+    }
+    handleInputChage(event){
+        const target = event.target;
+        const value = target.type === 'radio' ? (target.value==='id' ? target.checked:!target.checked) : target.value;
+        const name = target.name;
+        this.setState({[name]:value});
+    }
+    handleSubmit(event){
+        event.preventDefault();
+        if(this.state.idChecked) {
+            this.state.searchString === '' ? this.LoadStudents() :this.GetStudentById(this.state.searchString);
         }
     }
-
-
-    render() {
-
-        return (
-
-            <div className={'container-fluid'}>
-                <div className='row'>
-                    <div className='pull-right'>
-                        <Link className='btn btn-success' to={`/students/detail/create/0`} >+ Create</Link>
-                    </div>
-                </div>
-                {this.state.students.map(function (s) {
-                    return <StudentCard key={s.id} student={s}/>
-                })
-                }
-
-
-            </div>
-        );
-
+    componentWillMount(){
+        this.LoadStudents();
     }
-
-
+    render() {
+        if(this.state.isLoading) {
+            return <Spinner />
+        }
+       else if (this.state.error) {
+            return <span>something error</span> 
+        } else {
+            return(
+                <div>
+                    <TopNav value={this.state.searchString} idChecked={this.state.idChecked} onInputChange={this.handleInputChage} onSubmit={this.handleSubmit} onClick={this.handleClick}/>
+                    <StudentsList students={this.state.students} onClick={e => this.handleClick(e)}/>
+                </div>
+            );
+        }
+    }
 }
