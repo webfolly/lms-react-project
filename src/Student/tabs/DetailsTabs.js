@@ -17,7 +17,7 @@ export default class DetailsTabs extends Component {
     componentWillMount() {
         this.state = this.props.obj;
         let flag = ('view' === this.props.action);
-        console.log(this.props.obj);
+        console.log(this.props.action);
 
         this.setState({isEditing: flag});
     }
@@ -44,7 +44,6 @@ export default class DetailsTabs extends Component {
                         <div className="row">
                             <div className="col-lg-8 col-md-8"><i className="fa fa-users"></i> View Student Details
                             </div>
-
                         </div>
                     </div>
                     <div className="panel-body">
@@ -137,35 +136,47 @@ export default class DetailsTabs extends Component {
                                                             <td className="text-success"><i
                                                                 className="fa fa-user"></i> Full Name
                                                             </td>
-                                                            <td><input className={'noborder-inputText'} type={'text'}
+                                                            <td><input className={(this.props.action !== 'create' )?'noborder-inputText':''} type={'text'}
                                                                        name={'name'} value={this.state.student.name}
                                                                        onChange={this.handleChange}
                                                                        readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
-                                                                className="fa fa-list-ol"></i> Scholar Number
+                                                                className="fa fa-user"></i> Gender
                                                             </td>
-                                                            <td>45</td>
+                                                            <td><input className={(this.props.action !== 'create' )?'noborder-inputText':''} type={'text'}
+                                                                       name={'gender'} value={this.state.student.gender}
+                                                                       onChange={this.handleChange}
+                                                                       readOnly={!this.state.isEditing}/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-list-ol"></i>Student code
+                                                            </td>
+                                                            <td><input type={'text'} name={'language'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.studentcode}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-book"></i> Language
                                                             </td>
-                                                            <td>English</td>
+                                                            <td><input type={'text'} name={'language'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.language}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="fa fa-group"></i> className &amp; Section
-                                                            </td>
-                                                            <td>12-F</td>
-                                                        </tr>
+
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-calendar"></i> Birthday
                                                             </td>
                                                             <td><input type={'text'} name={'birthday'}
-                                                                       className='noborder-inputText'
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
                                                                        onChange={this.handleChange}
                                                                        value={this.state.student.birthday}
                                                                        readOnly={!this.state.isEditing}/></td>
@@ -175,9 +186,11 @@ export default class DetailsTabs extends Component {
                                                             <td className="text-success"><i
                                                                 className="fa fa-university"></i> School
                                                             </td>
-                                                            <td>
-                                                                Shyama Mall Girls Inter College
-                                                            </td>
+                                                            <td><input type={'text'} name={'school'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.school}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -195,10 +208,54 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td>
 
-                                                                <strong>
-                                                                    C-***, Amahiya </strong><br/>
-                                                                Kharobar, ****** <br/>
-                                                                Gorakhpur, Utter Pradesh, India<br/>
+                                                                <input type={'text'} name={'address'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.address}
+                                                                       readOnly={!this.state.isEditing}/>
+
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-home"></i> City/Suburb
+                                                            </td>
+                                                            <td>
+
+                                                                <input type={'text'} name={'city_sub'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.city_sub}
+                                                                       readOnly={!this.state.isEditing}/>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-home"></i> State
+                                                            </td>
+                                                            <td>
+
+                                                                <input type={'text'} name={'state'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.state}
+                                                                       readOnly={!this.state.isEditing}/>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-home"></i> Country
+                                                            </td>
+                                                            <td>
+
+                                                                <input type={'text'} name={'addressCountry'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.addressCountry}
+                                                                       readOnly={!this.state.isEditing}/>
 
                                                             </td>
                                                         </tr>
@@ -206,6 +263,7 @@ export default class DetailsTabs extends Component {
                                                     </table>
                                                 </div>
                                             </div>
+
                                             <div id="Contact" className="tab-pane fade">
                                                 <div className="table-responsive panel">
                                                     <table className="table">
@@ -215,55 +273,43 @@ export default class DetailsTabs extends Component {
                                                             <td className="text-success"><i
                                                                 className="fa fa-envelope-o"></i> Email ID
                                                             </td>
-                                                            <td><Link
-                                                                to="mailto:****@pawanmall.net?subject=Email from &amp;body=Hello, Viddhyut Mall">****@pawanmall.net</Link>
+                                                            <td>
+                                                                <input type={'text'} name={'email'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.email}
+                                                                       readOnly={!this.state.isEditing}/>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="glyphicon glyphicon-phone"></i> Mobile Number
                                                             </td>
-                                                            <td>88********</td>
+                                                            <td><input type={'text'} name={'mobile'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.mobile}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-flag"></i> Nationality
                                                             </td>
-                                                            <td>Indian</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="fa fa-user"></i> Father's
-                                                                Name
-                                                            </td>
-                                                            <td>Ajay Mall</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="glyphicon glyphicon-phone"></i> Father's
-                                                                Mobile
-                                                            </td>
-                                                            <td>+91 99********</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="fa fa-user"></i> Mother's
-                                                                Name
-                                                            </td>
-                                                            <td>Hemlata Mall</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="glyphicon glyphicon-phone"></i> Mother's
-                                                                Mobile
-                                                            </td>
-                                                            <td>+91 90********</td>
+                                                            <td><input type={'text'} name={'nationality'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.nationality}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-user"></i> Emergency Contact Person
                                                             </td>
-                                                            <td>Pawan Mall</td>
+                                                            <td><input type={'text'} name={'emergencyPerson'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.emergencyPerson}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -271,7 +317,11 @@ export default class DetailsTabs extends Component {
                                                                 Contact
                                                                 Person's Mobile
                                                             </td>
-                                                            <td>+91 88********</td>
+                                                            <td><input type={'text'} name={'emergencyMobile'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.emergencyMobile}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
 
                                                         </tbody>
@@ -284,47 +334,44 @@ export default class DetailsTabs extends Component {
                                                         <tbody>
                                                         <tr>
                                                             <td className="text-success"><i
-                                                                className="fa fa-university"></i> Last School
-                                                            </td>
-                                                            <td>Pawan Mall's School</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
                                                                 className="fa fa-calendar"></i> Date
                                                                 of Admission
                                                             </td>
-                                                            <td>March 4, 2009</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="fa fa-home"></i> Birth
-                                                                Place
-                                                            </td>
-                                                            <td>Delhi</td>
+                                                            <td><input type={'text'} name={'dateAdmission'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.dateAdmission}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-calendar"></i> Academic Year
                                                             </td>
-                                                            <td>2015-2016</td>
+                                                            <td><input type={'text'} name={'academicYear'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.academicYear}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-medkit"></i> Medical Condition
                                                             </td>
-                                                            <td>Normal</td>
+                                                            <td><input type={'text'} name={'medicalCondition'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.medicalCondition}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-thumbs-up"></i> Active/Inactive
                                                             </td>
-                                                            <td>Student is Active</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="text-success"><i
-                                                                className="glyphicon glyphicon-time"></i> Last Editing
-                                                            </td>
-                                                            <td>2015-08-20 09:41:56</td>
+                                                            <td><input type={'text'} name={'active'}
+                                                                       className={(this.props.action !== 'create' )?'noborder-inputText':''}
+                                                                       onChange={this.handleChange}
+                                                                       value={this.state.student.active}
+                                                                       readOnly={!this.state.isEditing}/></td>
                                                         </tr>
 
                                                         </tbody>
