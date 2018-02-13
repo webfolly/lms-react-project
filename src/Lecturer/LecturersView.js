@@ -8,7 +8,7 @@ import LecturerCard from "./LecturerCard";
 //import {lecturer} from "../lecturerdata";
 import '../styles';
 
-import {fetchLecturers, fetchLecturersByID} from '../api/lecturer';
+import {fetchLecturers, fetchLecturersByID, deleteLecturerByID, updateLecturerByID, createLecturer} from '../api/lecturer';
 
 export default class LecturersView extends Component {
     constructor(props) {
@@ -16,10 +16,14 @@ export default class LecturersView extends Component {
         this.state = {
             error: null,
             lecturers: [],
-            isLoading: false
+            isLoading: false,
+            isChecked: true
         };
 
         // this.handleLecturerData = this.handleLecturerData.bind(this);
+        this.handleInputChage = this.handleInputChage.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
 
     }
 
@@ -37,7 +41,36 @@ export default class LecturersView extends Component {
             .catch(error => this.setState({error}));
     }
 
+    DeleteLecturerById(id) {
+        this.setState({isLoading:true});
+        deleteLecturerByID(id)
+            .then(response => { if(response.status===200) this.setState({isLoading:false})})
+            .catch(error => this.setState({error}));
+    }
 
+    handleClick(event){
+        const name = event.target.name;
+        const value = event.target.value;
+        console.log(value);
+        event.preventDefault();
+        if(window.confirm(`Lecturer will be deleted.Confirm to continue..`)) {
+            this.DeleteLecturerById(value);
+        } 
+    }
+
+    handleInputChage(event){
+        const target = event.target;
+        const value = target.type === 'radio' ? (target.value==='id' ? target.checked:!target.checked) : target.value;
+        const name = target.name;
+        this.setState({[name]:value});
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        if(this.state.idChecked) {
+            this.state.searchString === '' ? this.GetLecturers() :this.GetLecturerById(this.state.searchString);
+        }
+    }
 
     componentWillMount() {
         // fetchLecturers()
@@ -72,7 +105,7 @@ export default class LecturersView extends Component {
 
     render() {
         if(this.state.isLoading){
-            return <Spinner />
+            return null
         }else if(this.state.error){
             return <span>something error</span> 
         }else{
