@@ -32,9 +32,27 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'1',
                     name: 'John Wu',
                     gender: 'male',
-                    birthday: '12/12/1990'
+                    birthday: '12/12/1990',
+                    school:'Grammar College',
+                    language:'English',
+                    studentCode:'s0001',
+                    birthplace:'Australia',
+                    email:'info@student.com.au',
+                    mobile:'0400111222',
+                    nationality:'Australian',
+                    emergencyPerson:'Lily Sugar',
+                    emergencyMobile:'0422333444',
+                    address:'Unit 12, Yoga st',
+                    city_sub:'Runcorn',
+                    state:'Queensland',
+                    addressCountry:'Australia',
+                    dateAdmission:'12/12/2017',
+                    academicYear:'2017-2019',
+                    medicalCondition:'normal',
+                    active:'Y'
                 }
             });
         } else if (action === 'view') {
@@ -48,9 +66,27 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'1',
                     name: 'John Wu',
                     gender: 'male',
-                    birthday: '12/12/1990'
+                    birthday: '12/12/1990',
+                    school:'Grammar College',
+                    language:'English',
+                    studentCode:'s0001',
+                    birthplace:'Australia',
+                    email:'info@student.com.au',
+                    mobile:'0400111222',
+                    nationality:'Australian',
+                    emergencyPerson:'Lily Sugar',
+                    emergencyMobile:'0422333444',
+                    address:'Unit 12, Yoga st',
+                    city_sub:'Runcorn',
+                    state:'Queensland',
+                    addressCountry:'Australia',
+                    dateAdmission:'12/12/2017',
+                    academicYear:'2017-2019',
+                    medicalCondition:'normal',
+                    active:'Y'
                 }
             });
         } else {
@@ -64,9 +100,22 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'',
                     name: '',
                     gender: '',
-                    birthday: ''
+                    birthday: '',
+                    school:'',
+                    language:'',
+                    studentCode:'',
+                    birthplace:'',
+                    address:'',
+                    city_sub:'',
+                    state:'',
+                    addressCountry:'',
+                    dateAdmission:'',
+                    academicYear:'',
+                    medicalCondition:'',
+                    active:''
                 }
             });
         }
@@ -90,11 +139,12 @@ export default class StudentDetailView extends Component {
 
     render() {
         let obj = this.state;
-        let action = this.state.action;
+        let action = this.props.match.params.action;
         console.log(this.state.action);
         if (action === 'edit') {
             return <DetailsTabs obj={obj} action={'edit'}/>
         } else if (action === 'create') {
+            console.log(action);
             return <DetailsTabs obj={{
                 id: this.props.match.params.id,
                 action: this.props.match.params.action,
@@ -104,13 +154,29 @@ export default class StudentDetailView extends Component {
                 isLoading:
                     false,
                 student: {
+                    id:'',
                     name: '',
                     gender: '',
-                    birthday: ''
+                    birthday: '',
+                    school:'',
+                    language:'',
+                    studentCode:'',
+                    birthplace:'',
+                    address:'',
+                    city_sub:'',
+                    state:'',
+                    addressCountry:'',
+                    dateAdmission:'',
+                    academicYear:'',
+                    medicalCondition:'',
+                    active:''
+
                 }
             }} action={'create'}/>
+        }else{
+            return <DetailsTabs obj={obj} action={'view'}/>
         }
-        return <DetailsTabs obj={obj} action={'view'}/>
+
     }
 
 }

@@ -8,8 +8,8 @@ import axios from 'axios';
 //import lecturer from '../lecturer/api';
 import App from './App';
 
+axios.defaults.baseURL = 'https://lmswebapidemo.azurewebsites.net/api';
 
-axios.default.baseURL = 'https://lmswebapidemo.azurewebsites.net/api';
 
 ReactDOM.render(
 	<Router>

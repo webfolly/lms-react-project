@@ -21,3 +21,8 @@ img {
     border:none;
 }
 
+.row {
+    border: 30px;
+    padding: 2px 16px;
+}
+
