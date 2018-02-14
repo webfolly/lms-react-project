@@ -18,7 +18,7 @@ export default () => ((
 
         <Route exact path="/students" component={StudentsView}/>
         <Route exact path="/students/detail/:action/:id" component={StudentDetailView}/>
-        <Route exact path="/lecturers/detail/:id" component={LecturerDetailView} />
+        <Route exact path="/lecturers/detail/:action/:id" component={LecturerDetailView} />
 
         <Route exact path="/lecturers" component={LecturersView}/>
         <Route exact path="/signin" component={() => <p>signin</p>}/>
