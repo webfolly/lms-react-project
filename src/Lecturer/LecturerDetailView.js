@@ -6,6 +6,7 @@ import DetailForm from './DetailForm';
 //import lecturer from '../api/lecturer';
 
 //import {fetchLecturers,  fetchLecturersByID} from '../api/lecturer';
+import {fetchLecturers, fetchLecturersByID, deleteLecturerByID, updateLecturerByID, createLecturer} from '../api/lecturer';
 
 export default class LecturerDetailView extends Component {
     
@@ -22,9 +23,14 @@ export default class LecturerDetailView extends Component {
         //     email: props.match.params.email
         //  }
 
-        // this.state = {
-        //     lecturer: []
-        // };
+        this.state = {
+            lecturer: [],
+            error: null,
+            isLoading: false,
+            isEditing: false,
+            isSaving: false
+        };
+        //this.handleChange = this.handleChange.bind(this);
         this.loadLecturerDetail = this.loadLecturerDetail.bind(this);
     }
 

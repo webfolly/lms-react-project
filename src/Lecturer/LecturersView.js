@@ -72,7 +72,7 @@ export default class LecturersView extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // fetchLecturers()
         // .then(
         //     data => this.setState({lecturers: data}))
