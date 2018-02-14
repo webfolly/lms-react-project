@@ -49,30 +49,29 @@ export default class LecturerDetailView extends Component {
                     email: 'jane@itee.uq.edu.au'
                 }
             });
+
         } else if (action === 'view') {
                 this.setState({
-                    id: this.props.match.params.id,
-    
+                    id: this.props.match.params.id,   
                     inputState: 'readOnly',
                     isEditing: false,
                     isSaving:
                         false,
                     isLoading:
                         false,
-                    lecturer: {
-                        id: 1,
-                        name: 'Jane Hunter',
-                        occupation: 'Professor',
-                        school: 'School of Information Technology and Electrical Engineering',
-                        faculty: 'Faculty of Engineering, Architecture and Information Technology',
-                        phone: '+61 7 336 51092',
-                        email: 'jane@itee.uq.edu.au'
+                     lecturer: {
+                         id: 1,
+                         name: 'Jane Hunter',
+                         occupation: 'Professor',
+                         school: 'School of Information Technology and Electrical Engineering',
+                         faculty: 'Faculty of Engineering, Architecture and Information Technology',
+                         phone: '+61 7 336 51092',
+                         email: 'jane@itee.uq.edu.au'
                     }
                 });
             } else {
                 this.setState({
-                    id: this.props.match.params.id,
-    
+                    id: this.props.match.params.id,    
                     inputState: 'readOnly',
                     isEditing: true,
                     isSaving:
@@ -143,15 +142,18 @@ export default class LecturerDetailView extends Component {
         // const {isLoading, isEditing, lecturer} = this.state;
         // if(isLoading) {
         //    return(<h2>Loading...</h2>)
-        let object = this.state;
-        let action = this.state.action;
+        let object = ('view' === this.props.action);
+        //let object = this.state;
+        let action = 'view';
+        this.state.action = action;
+       
         console.log(this.state.action);
         //const lecturer = this.state.lecturer;
         if(action === 'view') {
-            return <DetailForm object={object} action={'view'}/>
+            return <DetailForm  lecturer={this.state.lecturer} object={object} action={'view'}/>
         }
         if (action === 'edit') {
-            return <DetailForm object={object} action={'edit'}/>
+            return <DetailForm  lecturer={this.state.lecturer} object={object} action={'edit'}/>
         } else if (action === 'create') {
             return <DetailForm object={{
                 id: this.props.match.params.id,
