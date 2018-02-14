@@ -7,36 +7,9 @@ import {
 
 
 export default class DetailsTabs extends Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-
-
-    }
-
-    componentWillMount() {
-        this.state = this.props.obj;
-        let flag = ('view' === this.props.action);
-        console.log(this.props.action);
-
-        this.setState({isEditing: flag});
-    }
-
-    handleChange(event) {
-        let {name, value} = event.target;
-        console.log({name});
-        if (this.state.isEditing) {
-            this.setState({student: {...this.state.student, [name]: value}});
-        } else {
-            return;
-        }
-
-    }
-
 
     render() {
-
-
+        const student = this.props.student;
         return (
             <div>
                 <div className="row panel panel-success" style={{marginTop: "2%",marginLeft:0,marginRight:0}}>
@@ -134,21 +107,30 @@ export default class DetailsTabs extends Component {
 
                                                         <tr>
                                                             <td className="text-success"><i
-                                                                className="fa fa-user"></i> Full Name
+                                                                className="fa fa-user"></i> First Name
                                                             </td>
                                                             <td><input className={(this.props.action !== 'create' )?'noborder-inputText':''} type={'text'}
-                                                                       name={'name'} value={this.state.student.name}
-                                                                       onChange={this.handleChange}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       name={'firstName'} value={this.props.student.firstName}
+                                                                       onChange={this.props.callback}
+                                                                       readOnly={this.props.action === 'view'}/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="text-success"><i
+                                                                className="fa fa-user"></i> Last Name
+                                                            </td>
+                                                            <td><input className={(this.props.action !== 'create' )?'noborder-inputText':''} type={'text'}
+                                                                       name={'lastName'} value={this.props.student.lastName}
+                                                                       onChange={this.props.callback}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
                                                                 className="fa fa-user"></i> Gender
                                                             </td>
                                                             <td><input className={(this.props.action !== 'create' )?'noborder-inputText':''} type={'text'}
-                                                                       name={'gender'} value={this.state.student.gender}
-                                                                       onChange={this.handleChange}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       name={'gender'} value={this.props.student.gender}
+                                                                       onChange={this.props.callback}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -156,9 +138,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'language'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.studentcode}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.studentcode}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -166,9 +148,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'language'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.language}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.language}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
 
                                                         <tr>
@@ -177,9 +159,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'birthday'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.birthday}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.birthday}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
 
                                                         <tr>
@@ -188,9 +170,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'school'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.school}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.school}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -210,9 +192,9 @@ export default class DetailsTabs extends Component {
 
                                                                 <input type={'text'} name={'address'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.address}
-                                                                       readOnly={!this.state.isEditing}/>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.address}
+                                                                       readOnly={this.props.action === 'view'}/>
 
                                                             </td>
                                                         </tr>
@@ -225,9 +207,9 @@ export default class DetailsTabs extends Component {
 
                                                                 <input type={'text'} name={'city_sub'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.city_sub}
-                                                                       readOnly={!this.state.isEditing}/>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.city_sub}
+                                                                       readOnly={this.props.action === 'view'}/>
 
                                                             </td>
                                                         </tr>
@@ -239,9 +221,9 @@ export default class DetailsTabs extends Component {
 
                                                                 <input type={'text'} name={'state'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.state}
-                                                                       readOnly={!this.state.isEditing}/>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.state}
+                                                                       readOnly={this.props.action === 'view'}/>
                                                             </td>
                                                         </tr>
 
@@ -253,9 +235,9 @@ export default class DetailsTabs extends Component {
 
                                                                 <input type={'text'} name={'addressCountry'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.addressCountry}
-                                                                       readOnly={!this.state.isEditing}/>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.addressCountry}
+                                                                       readOnly={this.props.action === 'view'}/>
 
                                                             </td>
                                                         </tr>
@@ -276,9 +258,9 @@ export default class DetailsTabs extends Component {
                                                             <td>
                                                                 <input type={'text'} name={'email'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.email}
-                                                                       readOnly={!this.state.isEditing}/>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.email}
+                                                                       readOnly={this.props.action === 'view'}/>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -287,9 +269,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'mobile'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.mobile}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.mobile}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -297,9 +279,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'nationality'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.nationality}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.nationality}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -307,9 +289,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'emergencyPerson'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.emergencyPerson}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.emergencyPerson}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -319,9 +301,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'emergencyMobile'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.emergencyMobile}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.emergencyMobile}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
 
                                                         </tbody>
@@ -339,9 +321,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'dateAdmission'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.dateAdmission}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.dateAdmission}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -349,9 +331,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'academicYear'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.academicYear}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.academicYear}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -359,9 +341,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'medicalCondition'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.medicalCondition}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.medicalCondition}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="text-success"><i
@@ -369,9 +351,9 @@ export default class DetailsTabs extends Component {
                                                             </td>
                                                             <td><input type={'text'} name={'active'}
                                                                        className={(this.props.action !== 'create' )?'noborder-inputText':''}
-                                                                       onChange={this.handleChange}
-                                                                       value={this.state.student.active}
-                                                                       readOnly={!this.state.isEditing}/></td>
+                                                                       onChange={this.props.callback}
+                                                                       value={this.props.student.active}
+                                                                       readOnly={this.props.action === 'view'}/></td>
                                                         </tr>
 
                                                         </tbody>
