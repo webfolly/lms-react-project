@@ -40,7 +40,7 @@ export default class LecturerCard extends Component {
                             {`${lecturers.email}`}
                         </li>
                         <li className='occupation'>
-                            <Link to={'/lecturers/detail/1'}>Details</Link>
+                            <Link to={'/lecturers/detail/view/1'}>Details</Link>
                         </li>
 
                     </ul>
