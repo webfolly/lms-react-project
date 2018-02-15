@@ -21,6 +21,8 @@ export default class StudentDetailView extends Component {
         console.log(props.match.params.action);
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmitOnclick = this.handleSubmitOnclick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.loadStudentDetail = this.loadStudentDetail.bind(this);
 
     }
@@ -36,7 +38,7 @@ export default class StudentDetailView extends Component {
 
     }
 
-    handleOnSubmit(event){
+    handleOnSubmit(event) {
 
     }
 
@@ -136,6 +138,17 @@ export default class StudentDetailView extends Component {
 
     }
 
+    handleSubmit(e) {
+
+        e.preventDefault();
+    }
+
+    handleSubmitOnclick(e){
+        if(window.confirm("Are you sure to change?")){
+            alert('y');
+        }
+    }
+
     componentWillMount() {
         console.log('hello did');
         if (this.props.match.params.action == 'view' || this.props.match.params.action === 'edit') {
@@ -148,7 +161,8 @@ export default class StudentDetailView extends Component {
     render() {
         let obj = this.state;
         let action = this.props.match.params.action;
-        return <DetailsTabs student={this.state.student} action={action} callback={this.handleChange} />
+        return <DetailsTabs student={this.state.student} action={action} callback={this.handleChange}
+                            handleSubmit={this.handleSubmit}/>
 
     }
 
