@@ -45,13 +45,19 @@ export default class StudentsView extends React.Component {
     DeleteStudentById(id) {
         this.setState({isLoading:true});
         deleteStudent(id)
-            .then(response => { if(response.status===200) this.setState({isLoading:false})})
+            .then(
+                response => {
+                    if(response.status===200) {
+                        this.setState({isLoading:false});
+                        this.LoadStudents();
+                    }
+                }
+            )
             .catch(error => this.setState({error}));
     }
     handleClick(event){
         const name = event.target.name;
         const value = event.target.value;
-        console.log(value);
         event.preventDefault();
         if(window.confirm(`Student will be deleted.Confirm to continue..`)) {
             this.DeleteStudentById(value);
@@ -69,7 +75,7 @@ export default class StudentsView extends React.Component {
             this.state.searchString === '' ? this.LoadStudents() :this.GetStudentById(this.state.searchString);
         }
     }
-    componentWillMount(){
+    componentDidMount(){
         this.LoadStudents();
     }
     render() {
