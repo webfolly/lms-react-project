@@ -35,7 +35,7 @@ export default function SideNav(props) {
                         <Link to="/lecturers">Lecturer Management</Link>
                     </li>
                     <li>
-                        <Link to="/enrolment">Enrolment</Link>
+                        <Link to="/enrolment/new">Enrolment</Link>
                     </li>
                     <li>
                         <Link to="/admin"> Admin</Link>
