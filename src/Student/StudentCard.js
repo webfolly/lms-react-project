@@ -27,7 +27,7 @@ export default function StudentItem(props) {
             <div className="btn-group">
                 <button className="btn-circle" value={student.id} onClick={props.onClick}> <i className="fa fa-times"></i></button>
                 <Link to={`/students/detail/edit/${student.id}`}> <button className="btn-circle"> <i className="fa fa-edit"></i></button> </Link>
-                <button className="btn-circle"> <i className="fa fa-info"></i></button>
+                <Link to={`/enrolment/${student.id}`} ><button className="btn-circle"> <i className="fa fa-book"></i></button> </Link>
             </div>
         </div>
     );
