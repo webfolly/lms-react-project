@@ -123,6 +123,8 @@
 .itemProfile h4{
     color: rgb(58, 48, 99);
     margin: 10px auto;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 .itemProfile div span{
     color: #999;
