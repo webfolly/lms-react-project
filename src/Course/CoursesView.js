@@ -23,7 +23,7 @@ export default class CoursesView extends React.Component {
     }
 
 
-    componentWillMount() {
+    componentDidMount() {
         this.loadCourses();
     }
 
