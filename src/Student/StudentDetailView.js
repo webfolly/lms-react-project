@@ -38,10 +38,6 @@ export default class StudentDetailView extends Component {
 
     }
 
-    handleOnSubmit(event) {
-
-    }
-
 
     loadStudentDetail() {
         let action = this.props.match.params.action;
@@ -139,7 +135,10 @@ export default class StudentDetailView extends Component {
     }
 
     handleSubmit(e) {
+        let action = this.props.match.params.action;
+        if(action === 'create'){
 
+        }
         e.preventDefault();
     }
 
