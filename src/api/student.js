@@ -6,8 +6,8 @@ export function fetchStudents(){
 export function fetchStudent(id) {
     return axios.get(`/student/${id}`);
 }
-export function createStudent() {
-    return axios.post('/student');
+export function createStudent(student) {
+    return axios.post('/student', student);
 }
 export function deleteStudent(id) {
     return axios.delete(`/student/${id}`);
