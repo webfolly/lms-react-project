@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CoursesView from './CoursesView';
 import {Link} from 'react-router-dom';
 import {Spinner} from '../UI/UIComponents';
-import {fetchCourse,deleteCourse} from '../api/course';
+import {fetchCourse,deleteCourse, createCourse} from '../api/course';
 
 export default class CourseDetailView extends React.Component{
     constructor(props) {
@@ -14,8 +14,7 @@ export default class CourseDetailView extends React.Component{
             error: null,
             course: {}
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.getCoursesById = this.getCoursesById.bind(this);
     }
 
     getCoursesById(){
@@ -41,98 +40,116 @@ export default class CourseDetailView extends React.Component{
         }
     }
 
-    handleChange(e) {
-        e.preventDefault();
-        this.setState({isLoading: true});
-        const {name,value} = e.target;
-        if(!this.state.isEditing){
-            return;
-        } else {
-            this.setState({course:{...this.state.course,[name]:value}});
-        }
-
-    }
-
-    DeleteCourseById(id) {
-        this.setState({isLoading:true});
-        deleteCourse(id)
-            .then(response => { if(response.status===200) this.setState({isLoading:false})})
-            .catch(error => this.setState({error}));
-    }
-
-    handleClick(event){
-        const name = event.target.name;
-        const value = event.target.value;
-        console.log(value);
-        event.preventDefault();
-        if(window.confirm(`Course will be deleted.Confirm to continue..`)) {
-            this.DeleteCourseById(value);
-        } 
-    }
-
     render() {
-        function DetailsView(props) {
-            let course = props.course;
+        if(this.state.isLoading) {
+            return <Spinner />
+        } else {
             return (
-                <div className="tab-content">
-                    <div id="Summary" className="tab-pane fade in active">
-                        <div className="table-responsive panel">
-                            <form action="#">
-                            <table className="table">
-                                <tbody>
-                                <tr>
-                                    <td className="text-success" name="id" value={course.id}><i
-                                        className="fa fa-group"></i> Course ID
-                                    </td>
-                                    <td>{course.id}</td>
-                                </tr>
-                                <tr>
-                                    <td className="text-success" name="name" value={course.name}><i
-                                        className="fa fa-group"></i> Course Name
-                                    </td>
-                                    <td>{course.name}</td>
-                                </tr>
-                                <tr>
-                                    <td className="text-success" name="desc" value={course.desc}><i
-                                        className="fa fa-group"></i> Description
-                                    </td>
-                                    <td>{course.desc}</td>
-                                </tr>
-                                <tr>
-                                    <td className="text-success" name="statrDate" value=""><i
-                                        className="fa fa-calendar"></i> Start Date
-                                    </td>
-                                    <td>2017.10.12</td>
-                                </tr>
-                                <tr>
-                                    <td className="text-success" name="endDate" value=""><i
-                                        className="fa fa-calendar"></i> End Date
-                                    </td>
-                                    <td>2018.10.12</td>
-                                </tr>
-                                <tr>
-                                    <button onClick={e => this.handleClick(e)} className="btn-square"><i className="fa fa-minus"></i></button>
-                                    <Link to={`/courses/detail/edit/${course.id}`}> <button className="btn-circle"> <i className="fa fa-edit"></i></button> </Link>
-                                </tr>
-                                </tbody>
-                            </table>
-                            </form>
-                        </div>   
-                    </div>  
-                </div>         
-            )
-    }   
-
-    if(this.state.isLoading) {
-        return <Spinner />
-    } else {
-        return (
-             <div>
-                <DetailsView course={this.state.course}/>
                 <div>
-                    <Link className='btn btn-info' to={'/courses'}>Back</Link>
+                    {this.state.isEditing ? <DetailsEdit course={this.state.course} onSubmit={this.handleSubmit}/> : <DetailsView course={this.state.course} />}
+                    <div>
+                        <Link className='btn btn-info' to={'/courses'}>Back</Link>
+                    </div>
                 </div>
-            </div>
-        )}
-    }
+            )}
+        }
 }
+function DetailsView(props) {
+    let course = props.course;
+    return (
+        <div className="tab-content">
+            <div id="Summary" className="tab-pane fade in active">
+                <div className="table-responsive panel">
+                    <table className="table">
+                        <tbody>
+                        <tr>
+                            <td className="text-success" name="id" value={course.id}><i
+                                className="fa list-ol"></i> Course ID
+                            </td>
+                            <td>{course.id}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="name" value={course.name}><i
+                                className="fa fa-book"></i> Course Name
+                            </td>
+                            <td>{course.name}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="desc" value={course.desc}><i
+                                className="fa fa-book"></i> Description
+                            </td>
+                            <td>{course.descripton}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="desc" value={course.creditPoint}><i
+                                className="fa fa-list-ol"></i> Credit Point
+                            </td>
+                            <td>{course.creditPoint}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="desc" value={course.attendance}><i
+                                className="fa fa-group"></i> Attendance
+                            </td>
+                            <td>{course.attendance}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="desc" value={course.duration}><i
+                                className="fa fa-calendar"></i> Duration
+                            </td>
+                            <td>{course.duration}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="statrDate" value={course.statrDate}><i
+                                className="fa fa-calendar"></i> Start Date
+                            </td>
+                            <td>{course.startDate}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="endDate" value={course.endDate}><i
+                                className="fa fa-calendar"></i> End Date
+                            </td>
+                            <td>{course.endDate}</td>
+                        </tr>
+                        <tr>
+                            <td className="text-success" name="campus" value={course.campus}><i
+                                className="fa fa-university"></i> Campus
+                            </td>
+                            <td>{course.campus}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>   
+            </div>  
+        </div>         
+    )
+}   
+
+function Input (props){
+    return(
+        <div className="input-wrapper">
+            <label className="input-label" htmlFor={props.htmlFor}>{props.labelText}</label>
+            <br/>
+            <input className="input-component border-bottom" type={props.type} name={props.name} value={props.value} onChange={props.onChange} />
+        </div>
+    );
+}
+
+function DetailsEdit(props) {
+    let course = props.course;
+    return (
+        <div className="tab-content">
+            <div id="Summary" className="tab-pane fade in active">
+                <div className="table-responsive panel">
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                        Name:
+                        <input type="text" value={course.name} onChange={course.onChange}/>
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
+                    
+                </div>    
+            </div>  
+        </div>         
+    );
+}   
