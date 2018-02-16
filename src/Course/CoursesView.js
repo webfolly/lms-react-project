@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import CourseCard from "./CourseCard";
 import CourseDetailView from "./CourseDetailView";
@@ -29,7 +29,6 @@ export default class CoursesView extends React.Component {
             courses: []
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -61,15 +60,6 @@ export default class CoursesView extends React.Component {
         } 
     }
 
-    handleSubmit(e){
-        this.setState({isSaving:true});
-        const {course} = this.state;
-        if(this.isNew()) {
-            createCourse(course)
-                .then(response => {if(response.status===200) this.setState({isSaving:false,course:{}})});
-        } 
-    }
-
     handleChange(e) {
         e.preventDefault();
         this.setState({isLoading: true});
@@ -79,12 +69,16 @@ export default class CoursesView extends React.Component {
         } else {
             this.setState({course:{...this.state.course,[name]:value}});
         }
-
     }
 
-
     componentDidMount() {
-        this.loadCourses();
+        const {id} = this.props.match.params;
+        if(this.isNew()) {
+            this.setState({course:{},isEditing:true});
+            return;
+        } else {
+            this.loadCourses();
+        }
     }
 
     render() {
@@ -96,10 +90,10 @@ export default class CoursesView extends React.Component {
                 <div className={'container-fluid'}>
                     <div className='row'>
                         <div className='pull-right'>
-                            <Link to={`/courses/create/}`} className='btn btn-success' onSubmit={this.handleSubmit} >+ Create</Link>
+                            <Link to={`/courses/detail/create`} className='btn btn-success' onSubmit={this.handleSubmit} >+ Create</Link>
                         </div>
                     </div>
-                        {this.state.courses.map(course => <CourseCard key={course.id} course={course} onClick={this.handleClick}/>)}
+                        {this.state.courses.map(course => <Link to={`/courses/detail/${course.id}`} key={course.id}> <CourseCard course={course} onClick={this.handleClick}/></Link>)}
                 </div>
             )
         }
