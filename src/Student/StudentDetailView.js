@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DetailsTabs from './tabs/DetailsTabs';
-import {fetchStudent} from '../api/student';
+import {fetchStudent,createStudent,updateStudent} from '../api/student';
 
 export default class StudentDetailView extends Component {
 
@@ -136,9 +136,13 @@ export default class StudentDetailView extends Component {
 
     handleSubmit(e) {
         let action = this.props.match.params.action;
+        alert('Your details is updated!');
         if(action === 'create'){
-
+            createStudent(this.state.student);
+        }else{
+            updateStudent(this.props.match.params.id, this.state.student);
         }
+        this.props.history.push('/students');
         e.preventDefault();
     }
 

@@ -16,7 +16,7 @@ export default class DetailsTabs extends Component {
                     <div className="row panel panel-success" style={{marginTop: "2%", marginLeft: 0, marginRight: 0}}>
                         <div className="panel-heading lead">
                             <div className="row">
-                                <div className="col-lg-8 col-md-8"><i className="fa fa-users"></i> View Student Details
+                                <div className="col-lg-8 col-md-8"><i className="fa fa-users"></i> {this.props.action.toString().charAt(0).toUpperCase()+this.props.action.toString().slice(1)} Student Details
                                 </div>
                             </div>
                         </div>
@@ -395,9 +395,11 @@ export default class DetailsTabs extends Component {
 
                         </div>
                     </div>
-                    <div>
-                        <Link className='btn btn-info' to={'/students'}>Back</Link>
-                        <input type={'submit'} className='btn btn-success' value={'Edit'}/>
+                    <div className='pull-left'>
+                        <div className='btn-group'>
+                            <Link className='btn btn-info' to={'/students'}>Back</Link>
+                            <input type={'submit'} className='btn btn-success' value={'Save'}/>
+                        </div>
                     </div>
                 </form>
             </div>
