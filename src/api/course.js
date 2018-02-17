@@ -6,8 +6,8 @@ export function fetchCourses(){
 export function fetchCourse(id) {
     return axios.get(`/course/${id}`);
 }
-export function createCourse() {
-    return axios.post('/course');
+export function createCourse(course) {
+    return axios.post('/course',course);
 }
 export function deleteCourse(id) {
     return axios.delete(`/course/${id}`);
