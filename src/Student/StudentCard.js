@@ -12,7 +12,6 @@ function StudentProfile(props) {
                 <span> <strong>Country:</strong> {student.country} </span>
                 <span> <strong>Email Address:</strong> {student.email} </span>
                 <span> <strong>Mobile:</strong> {student.mobile} </span>
-                <span> <strong>Creidt Points Achieved:</strong> {student.creditsAchieved} </span>
             </div>
         </div>
     );     
