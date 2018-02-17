@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {fetchLecturers, fetchLecturersByID, deleteLecturerByID, updateLecturerByID, createLecturer} from '../api/lecturer';
+import {fetchLecturersByID, updateLecturerByID, createLecturer} from '../api/lecturer';
 
 export default class LecturerDetailView extends Component {
     
@@ -136,14 +136,4 @@ function LecturerDetailEdit(props) {
                 
             </div>
        );
-}
-
-function Input (props){
-    return(
-        <div className="input-wrapper">
-            <label className="input-label" htmlFor={props.htmlFor}>{props.labelText}</label>
-            <br/>
-            <input className="input-component border-bottom" type={props.type} name={props.name} value={props.value} onChange={props.onChange} />
-        </div>
-    );
 }
