@@ -1,10 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import CourseCard from "./CourseCard";
-import CourseDetailView from "./CourseDetailView";
-import axios from "axios";
 import '../styles';
-import {fetchCourses, createCourse, deleteCourse} from '../api/course';
+import {fetchCourses, deleteCourse} from '../api/course';
 import {Spinner} from '../UI/UIComponents';
 
 export default class CoursesView extends React.Component {
@@ -40,7 +38,6 @@ export default class CoursesView extends React.Component {
     }
 
     handleClick(e){
-        const name = e.target.name;
         const value = e.target.value;
         console.log(value);
         e.preventDefault();
@@ -61,7 +58,6 @@ export default class CoursesView extends React.Component {
     }
 
     componentDidMount() {
-        const {id} = this.props.match.params;
         if(this.isNew()) {
             this.setState({course:{},isEditing:true});
             return;
@@ -71,7 +67,6 @@ export default class CoursesView extends React.Component {
     }
 
     render() {
-        let courses= this.props.courses;
         if(this.state.isLoading) {
             return <Spinner />
         }else{

@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import CourseDetailView from "./CourseDetailView";
 import avatar from '../images/course.jpg';
 import '../styles';
 
