@@ -190,10 +190,10 @@ export default class DetailsTabs extends Component {
                                                                 </td>
                                                                 <td>
 
-                                                                    <input type={'text'} name={'city_sub'}
+                                                                    <input type={'text'} name={'city_Suburb'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.student.citySuburb}
+                                                                           value={this.props.student.city_Suburb}
                                                                            readOnly={this.props.action === 'view'}/>
 
                                                                 </td>
