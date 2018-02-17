@@ -79,7 +79,6 @@ export default class Enrollment extends React.Component{
 
 function StudentInfo (props){
     const student = props.student;
-    let i = '0';
     return(
         <div>
             <h3>Student Information</h3>

@@ -59,9 +59,12 @@ export default class StudentDetailView extends Component {
         if(action === 'create'){
             createStudent(this.state.student);
         }else{
-            updateStudent(this.props.match.params.id, this.state.student);
+            this.setState({isSaving:true});
+            updateStudent(this.props.match.params.id, this.state.student)
+                .then(response => this.setState({isSaving:false}))
+                .then(error => this.setState({error}))
         }
-        this.props.history.push('/students');
+        //this.props.history.push('/students');
         e.preventDefault();
     }
 

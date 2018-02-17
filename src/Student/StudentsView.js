@@ -39,7 +39,14 @@ export default class StudentsView extends React.Component {
     GetStudentById(id) {
         this.setState({isLoading:true});
         fetchStudent(id)
-            .then(response => {this.setState({isLoading:false,students:[response.data]})})
+            .then( response => {
+                if(response.data) {
+                    this.setState({isLoading:false,student:[response.data]});
+                } else {
+                    alert('Student not found!');
+                    this.setState({isLoading:false});
+                }
+            })            
             .catch(error => this.setState({error}));
     }
     DeleteStudentById(id) {

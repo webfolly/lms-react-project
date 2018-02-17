@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SideNav from './App/SideNav';
 import Routes from './App/Routes';
 import LoginScreen from './App/LoginScreen';
