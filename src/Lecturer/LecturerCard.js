@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import LecturerDetailView from "./LecturerDetailView";
 
 export default class LecturerCard extends Component {
     render() {
