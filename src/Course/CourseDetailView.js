@@ -18,6 +18,7 @@ export default class CourseDetailView extends React.Component{
         this.getCoursesById = this.getCoursesById.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     getCoursesById(){
@@ -33,15 +34,19 @@ export default class CourseDetailView extends React.Component{
         return id === 'create';
     }
 
+    handleClick(e){
+        e.preventDefault();
+        this.setState({isEditing:true});
+    }
+
     handleChange(e) {
         e.preventDefault();
         this.setState({isLoading: true});
+        const target = e.target;
         const {name,value} = e.target;
-        if(!this.state.isEditing){
-            return;
-        } else {
-            this.setState({course:{...this.state.course,[name]:value}});
-        }
+        course:{
+            this.setState({course:{...this.state.course,[name]:value}})
+        }; 
     }
 
     handleSubmit(e) {
@@ -55,7 +60,7 @@ export default class CourseDetailView extends React.Component{
                 .then(response => {if(response.status===200) this.setState({isSaving:false,isEditing:false})});
         }
     }
-
+    
     componentDidMount() {
         const {id} = this.props.match.params;
         if(this.isNew()) {
@@ -72,7 +77,7 @@ export default class CourseDetailView extends React.Component{
         } else {
             return (
                 <div>
-                    {this.state.isEditing ? <DetailsEdit course={this.state.course} onChange={this.handleChange} onSubmit={this.handleSubmit}/> : <DetailsView course={this.state.course} />}
+                    {this.state.isEditing ? <DetailsEdit course={this.state.course} onChange={this.handleChange} onSubmit={this.handleSubmit} onClick={this.handleClick}/> : <DetailsView course={this.state.course} />}
                 </div>
             )}
         }
@@ -165,8 +170,7 @@ function DetailsEdit(props) {
         <div className="tab-content">
             <div id="Summary" className="tab-pane fade in active">
                 <div className="table-responsive panel">
-                    <table className="table" onSubmit={course.handleSubmit}>
-                        <tbody>
+                    <form className="table" onSubmit={course.handleSubmit}>
                         <tr>
                             <td className="text-success" name="id"><i
                                 className="fa fa-list-ol"></i> Course ID
@@ -174,58 +178,57 @@ function DetailsEdit(props) {
                             <td><Input value={course.id} onChange={course.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="name" value={course.name} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="name" value={course.name} ><i
                                 className="fa fa-book"></i> Course Name
                             </td>
-                            <td><Input value={course.name} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.name} onChange={course.handleChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="desc" value={course.description} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="desc" value={course.description}><i
                                 className="fa fa-book"></i> Description
                             </td>
-                            <td><Input value={course.description} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.description} onChange={course.handleChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="desc" value={course.creditPoint} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="desc" value={course.creditPoint}><i
                                 className="fa fa-list-ol"></i> Credit Point
                             </td>
-                            <td><Input value={course.creditPoint} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.creditPoint} onChange={course.handleChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="desc" value={course.attendance} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="desc" value={course.attendance}><i
                                 className="fa fa-group"></i> Attendance
                             </td>
-                            <td><Input value={course.attendance} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.attendance} onChange={course.handleChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="description" value={course.duration} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="description" value={course.duration}><i
                                 className="fa fa-calendar"></i> Duration
                             </td>
-                            <td><Input value={course.duration} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.duration} onChange={course.handleChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="statrDate" value={course.statrDate} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="statrDate" value={course.statrDate}><i
                                 className="fa fa-calendar"></i> Start Date
                             </td>
-                            <td><Input value={course.statrDate} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.statrDate} onChange={course.handleChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="endDate" value={course.endDate} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="endDate" value={course.endDate}><i
                                 className="fa fa-calendar"></i> End Date
                             </td>
-                            <td><Input value={course.endDate} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.endDate} onChange={course.handleChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="campus" value={course.campus} onChange={course.handleSubmit}><i
+                            <td className="text-success" name="campus" value={course.campus}><i
                                 className="fa fa-university"></i> Campus
                             </td>
-                            <td><Input value={course.campus} onChange={course.handleSubmit}/></td>
+                            <td><Input value={course.campus} onChange={course.handleChange}/></td>
                         </tr>
-                        </tbody>
-                    </table>
+                    </form>
                 </div>  
                 <div>
-                    <input to={'/courses'} type={'submit'} value={'Save'} className='btn btn-success' course={course} onSubmit={course.handleSubmit} onChange={course.handleSubmit}/>
+                    <input className='btn btn-success' type={'submit'} value={'Save'} onChange={course.onChange} onSubmit={course.onSubmit}/>
                     <Link className='btn btn-info' to={'/courses'}>Back</Link>
                 </div> 
             </div>  

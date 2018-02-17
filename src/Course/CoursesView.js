@@ -7,17 +7,6 @@ import '../styles';
 import {fetchCourses, createCourse, deleteCourse} from '../api/course';
 import {Spinner} from '../UI/UIComponents';
 
-function CoursesList(props) {
-    let courseLists = props.courses.map(
-        item => <Link to={`/courses/detail/${item.id}`} key={item.id}><CourseCard course={item} onClick={props.onClick}/></Link>
-    );
-    return(
-        <div className="student-view">
-            {courseLists}
-        </div>
-    );
-}
-
 export default class CoursesView extends React.Component {
     constructor(props) {
         super(props);
