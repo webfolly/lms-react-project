@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import LecturerDetailView from "./LecturerDetailView";
-import avatar from '../images/img_avatar2.png';
 
 export default class LecturerCard extends Component {
     render() {
         
     
     const lecturers = this.props.lecturer;
-        console.log(lecturers);
+        console.log(this.props.lecturer.id);
     return (
         <div className='lecturercard'>
                 <div className='image'>
-                    <img src={avatar} alt="Avatar" />
+                    <img src='../img/img_avatar2.png' alt="Avatar" />
                 </div>
                 <div className='container'>
                     <ul>
@@ -39,7 +38,7 @@ export default class LecturerCard extends Component {
                             {`${lecturers.email}`}
                         </li>
                         <li className='occupation'>
-                            <Link to={'/lecturers/detail/1'}>Details</Link>
+                            <Link to={'/lecturers/detail/view/'+this.props.lecturer.id}>Details</Link>
                         </li>
 
                     </ul>
