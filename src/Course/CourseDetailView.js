@@ -40,33 +40,37 @@ export default class CourseDetailView extends React.Component{
     }
 
     handleChange(e) {
-        e.preventDefault();
-        this.setState({isLoading: true});
-        const target = e.target;
         const {name,value} = e.target;
-        course:{
-            this.setState({course:{...this.state.course,[name]:value}})
-        }; 
+        if(!this.state.isEditing){
+            return;
+        } else {
+            this.setState({course:{...this.state.course,[name]:value}});
+        }
     }
 
     handleSubmit(e) {
+        console.log(this.state);
         this.setState({isSaving:true});
         const {course} = this.state;
         if(this.isNew()) {
             createCourse(course)
-                .then(response => {if(response.status===200) this.setState({isSaving:false,course:{}})});
+                .then(response => {if(response.status===200) this.setState({isSaving:false,course})});
         } else {
             updateCourse(course.id,course)
-                .then(response => {if(response.status===200) this.setState({isSaving:false,isEditing:false})});
+                .then(response => {if(response.status===200) this.setState({isSaving:false,isEditing:false, course})});
         }
+        e.preventDefault();
     }
     
     componentDidMount() {
-        const {id} = this.props.match.params;
+        const {id, action} = this.props.match.params;
         if(this.isNew()) {
             this.setState({course:{},isEditing:true});
             return;
         } else {
+            if (action === 'edit') {
+                this.setState({isEditing: true});
+            }
             this.getCoursesById(id);
         }
     }
@@ -169,68 +173,70 @@ function DetailsEdit(props) {
     return (
         <div className="tab-content">
             <div id="Summary" className="tab-pane fade in active">
+            <form className="table" onSubmit={props.onSubmit}>
                 <div className="table-responsive panel">
-                    <form className="table" onSubmit={course.handleSubmit}>
+                   
                         <tr>
-                            <td className="text-success" name="id"><i
+                            <td className="text-success"><i
                                 className="fa fa-list-ol"></i> Course ID
                             </td>
-                            <td><Input value={course.id} onChange={course.onChange}/></td>
+                            <td><Input value={course.id} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="name" value={course.name} ><i
+                            <td className="text-success"><i
                                 className="fa fa-book"></i> Course Name
                             </td>
-                            <td><Input value={course.name} onChange={course.handleChange}/></td>
+                            <td><Input name="name" value={course.name} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="desc" value={course.description}><i
+                            <td className="text-success"><i
                                 className="fa fa-book"></i> Description
                             </td>
-                            <td><Input value={course.description} onChange={course.handleChange}/></td>
+                            <td><Input name="descripton" value={course.descripton} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="desc" value={course.creditPoint}><i
+                            <td className="text-success"><i
                                 className="fa fa-list-ol"></i> Credit Point
                             </td>
-                            <td><Input value={course.creditPoint} onChange={course.handleChange}/></td>
+                            <td><Input name="creditPoint" value={course.creditPoint} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="desc" value={course.attendance}><i
+                            <td className="text-success"><i
                                 className="fa fa-group"></i> Attendance
                             </td>
-                            <td><Input value={course.attendance} onChange={course.handleChange}/></td>
+                            <td><Input name="attendance" value={course.attendance} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="description" value={course.duration}><i
+                            <td className="text-success"><i
                                 className="fa fa-calendar"></i> Duration
                             </td>
-                            <td><Input value={course.duration} onChange={course.handleChange}/></td>
+                            <td><Input name="duration" value={course.duration} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="statrDate" value={course.statrDate}><i
+                            <td className="text-success"><i
                                 className="fa fa-calendar"></i> Start Date
                             </td>
-                            <td><Input value={course.statrDate} onChange={course.handleChange}/></td>
+                            <td><Input name="startDate" value={course.startDate} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="endDate" value={course.endDate}><i
+                            <td className="text-success"><i
                                 className="fa fa-calendar"></i> End Date
                             </td>
-                            <td><Input value={course.endDate} onChange={course.handleChange}/></td>
+                            <td><Input name="endDate" value={course.endDate} onChange={props.onChange}/></td>
                         </tr>
                         <tr>
-                            <td className="text-success" name="campus" value={course.campus}><i
+                            <td className="text-success"><i
                                 className="fa fa-university"></i> Campus
                             </td>
-                            <td><Input value={course.campus} onChange={course.handleChange}/></td>
+                            <td><Input name="campus" value={course.campus} onChange={props.onChange}/></td>
                         </tr>
-                    </form>
                 </div>  
                 <div>
-                    <input className='btn btn-success' type={'submit'} value={'Save'} onChange={course.onChange} onSubmit={course.onSubmit}/>
+                    <input className='btn btn-success' type={'submit'} value={'Save'} onChange={props.onChange} />
                     <Link className='btn btn-info' to={'/courses'}>Back</Link>
                 </div> 
+                </form>
+                
             </div>  
         </div>               
     )
