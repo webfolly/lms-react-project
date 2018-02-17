@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import CoursesView from './CoursesView';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Spinner} from '../UI/UIComponents';
 import {fetchCourse, createCourse, updateCourse} from '../api/course';
