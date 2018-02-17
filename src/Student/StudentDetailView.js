@@ -51,7 +51,6 @@ export default class StudentDetailView extends Component {
                 })
         }
 
-
     }
 
     handleSubmit(e) {
@@ -85,7 +84,7 @@ export default class StudentDetailView extends Component {
         let obj = this.state;
         let action = this.props.match.params.action;
         return <DetailsTabs student={this.state.student} action={action} callback={this.handleChange}
-                            handleSubmit={this.handleSubmit}/>
+                            handleSubmit={this.handleSubmit} />
 
     }
 

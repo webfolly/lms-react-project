@@ -146,10 +146,10 @@ export default class DetailsTabs extends Component {
                                                                 <td className="text-success"><i
                                                                     className="fa fa-list-ol"></i>Student code
                                                                 </td>
-                                                                <td><input type={'text'} name={'language'}
+                                                                <td><input type={'text'} name={'studentcode'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.studentcode}
+                                                                           value={this.props.studentCode}
                                                                            readOnly={this.props.action === 'view'}/>
                                                                 </td>
                                                             </tr>
@@ -177,17 +177,7 @@ export default class DetailsTabs extends Component {
                                                                 </td>
                                                             </tr>
 
-                                                            <tr>
-                                                                <td className="text-success"><i
-                                                                    className="fa fa-university"></i> School
-                                                                </td>
-                                                                <td><input type={'text'} name={'school'}
-                                                                           className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
-                                                                           onChange={this.props.callback}
-                                                                           value={this.props.student.school}
-                                                                           readOnly={this.props.action === 'view'}/>
-                                                                </td>
-                                                            </tr>
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -222,7 +212,7 @@ export default class DetailsTabs extends Component {
                                                                     <input type={'text'} name={'city_sub'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.student.city_sub}
+                                                                           value={this.props.student.citySuburb}
                                                                            readOnly={this.props.action === 'view'}/>
 
                                                                 </td>
@@ -247,10 +237,10 @@ export default class DetailsTabs extends Component {
                                                                 </td>
                                                                 <td>
 
-                                                                    <input type={'text'} name={'addressCountry'}
+                                                                    <input type={'text'} name={'country'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.student.addressCountry}
+                                                                           value={this.props.student.country}
                                                                            readOnly={this.props.action === 'view'}/>
 
                                                                 </td>
