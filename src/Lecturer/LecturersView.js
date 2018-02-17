@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import TopNav from '../App/TopNav';
-//import {Spinner} from '../UI/UIComponents';
 import LecturerDetailView from "./LecturerDetailView";
 import LecturerCard from "./LecturerCard";
 
-//import {lecturer} from "../lecturerdata";
 import '../styles';
 
 import {fetchLecturers, fetchLecturersByID, deleteLecturerByID, updateLecturerByID, createLecturer} from '../api/lecturer';
@@ -20,7 +18,6 @@ export default class LecturersView extends Component {
             isChecked: true
         };
 
-        // this.handleLecturerData = this.handleLecturerData.bind(this);
         this.handleInputChage = this.handleInputChage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -73,35 +70,9 @@ export default class LecturersView extends Component {
     }
 
     componentDidMount() {
-        // fetchLecturers()
-        // .then(
-        //     data => this.setState({lecturers: data}))
-        // .catch(function (error) {
-        //     if(error.response) {
-        //         console.log("There is an error in the lecturer data", error)
-        //     }
-        // } )    
-
-
-        // fetchLecturersByID(this.state.lecturers)
-        // .then(
-        //     data1 => this.setState({lecturers: data1.id}))
-        // .catch(function (error) {
-        //     console.log("There is an error in the lecuturer in the lecturer id data", error)
-        // })
-
         this.GetLecturers();
     }
 
-    // handleLecturerData(data) {
-    //     let lecturerdata = [];
-    //     console.log('got lecturer from api', data);
-    //     for(let i=0; i<5; i++){
-    //         lecturerdata[i] = {name: data[i].name, occupation: data[i].occupation, school: data[i].school, faculty: data[i].faculty, phone: data[i].phone, email: data[i].email}
-    //     } 
-    //     this.setState({lecturers})
-
-    // }
 
     render() {
         if(this.state.isLoading){
