@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import TopNav from '../App/TopNav';
-import LecturerDetailView from "./LecturerDetailView";
 import LecturerCard from "./LecturerCard";
 
 import '../styles';
 
-import {fetchLecturers, fetchLecturersByID, deleteLecturerByID, updateLecturerByID, createLecturer} from '../api/lecturer';
+import {fetchLecturers, fetchLecturersByID, deleteLecturerByID} from '../api/lecturer';
 
 export default class LecturersView extends Component {
     constructor(props) {
@@ -46,7 +43,7 @@ export default class LecturersView extends Component {
     }
 
     handleClick(event){
-        const name = event.target.name;
+ 
         const value = event.target.value;
         console.log(value);
         event.preventDefault();

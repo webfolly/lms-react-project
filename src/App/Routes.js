@@ -5,7 +5,6 @@ import CourseDetailView from "../Course/CourseDetailView";
 import StudentsView from '../Student/StudentsView';
 import StudentDetailView from '../Student/StudentDetailView';
 import LecturerDetailView from '../Lecturer/LecturerDetailView';
-import LecturerView from '../Lecturer/LecturersView';
 import Home from './Home';
 import LecturersView from '../Lecturer/LecturersView';
 import LoginScreen from './LoginScreen';
