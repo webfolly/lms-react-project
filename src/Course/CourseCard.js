@@ -19,7 +19,7 @@ export default function CourseCard(props) {
                     <div className="btn-group">
                         <button className="btn-circle" value={course.id} onClick={props.onClick}> <i className="fa fa-times"></i></button>
                         <Link to={`/courses/detail/edit/${course.id}`}> <button className="btn-circle"> <i className="fa fa-edit"></i></button> </Link>
-                        <Link to={`/enrolment/${course.id}`} ><button className="btn-circle"> <i className="fa fa-book"></i></button> </Link>
+                        <Link to={'/enrolment'} ><button className="btn-circle"> <i className="fa fa-book"></i></button> </Link>
                     </div>
                 </div>
             </div>   

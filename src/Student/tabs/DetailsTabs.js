@@ -40,7 +40,7 @@ export default class DetailsTabs extends Component {
                                                 <div className="modal-dialog" style={{width: '30%', height: '30%'}}>
                                                     <div className="modal-content">
                                                         <div className="modal-header">
-                                                            <button type="button" className="close" data-dismiss="modal"
+                                                            <button type="  " className="close" data-dismiss="modal"
                                                                     aria-hidden="true">×</button>
                                                             <h4 className="modal-title text-success"
                                                                 id="myModalLabel"><i
@@ -149,7 +149,7 @@ export default class DetailsTabs extends Component {
                                                                 <td><input type={'text'} name={'language'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.studentcode}
+                                                                           value={this.props.student.studentCode}
                                                                            readOnly={this.props.action === 'view'}/>
                                                                 </td>
                                                             </tr>
