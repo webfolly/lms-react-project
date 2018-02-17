@@ -1,65 +1,149 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {lecturer} from '../lecturerdata';
-
-import avatar from '../images/img_avatar2.png';
+import {fetchLecturers, fetchLecturersByID, deleteLecturerByID, updateLecturerByID, createLecturer} from '../api/lecturer';
 
 export default class LecturerDetailView extends Component {
     
     constructor(props){
         super(props);
 
-        //  this.state = {
-        //     id : props.match.params.id,
-        //     name: props.match.params.name,
-        //     occupation: props.match.params.occupation,
-        //     school: props.match.params.school,
-        //     faculty: props.match.params.faculty,
-        //     phone: props.match.params.phone,
-        //     email: props.match.params.email
-        //  }
+
+
         this.state = {
+            lecturer: {},
+            error: null,
             isLoading: false,
             isEditing: false,
-            isSaving: false,
-            error: null,
-            lecturer: null
+            isSaving: false
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.GetLecturersByID = this.GetLecturersByID.bind(this);
     }
+
+    isNew(){
+        const {id} = this.props.match.params;
+        return id === 'create';
+    }
+    
+    GetLecturersByID(id) {
+        this.setState({isLoading:true});
+        fetchLecturersByID(id)
+            .then(response => {
+                console.log(response.data);
+                this.setState({isLoading:false,lecturer:response.data})
+            })
+            .catch(error => this.setState({error}));
+            
+    }
+
+    handleSubmit(event){
+        this.setState({isSaving:true});
+        const {lecturer} = this.state;
+        if(this.isNew()){
+            createLecturer(lecturer)
+            .then(response => {if(response.status===200) this.setState({isSaving:false,lecturer:{}})});
+        } else {
+            updateLecturerByID(lecturer.id,lecturer)
+                .then(response => {if(response.status===200) this.setState({isSaving:false,isEditing:false})});
+        }
+
+    }
+    handleClick(e){
+        e.preventDefault();
+        this.setState({isEditing:true});
+    }
+    handleChange(event) {
+        const {name,value} = event.target;
+        if(!this.state.isEditing){
+            return;
+        } else {
+            this.setState({lecturer:{...this.state.lecturer,[name]:value}});
+        }
+    }
+    
     componentWillMount() {
-        this.setState({lecturer});
-
+        const {id} = this.props.match.params;
+        this.GetLecturersByID(id);
     }
 
+    componentWillUpdate() {
+        let action = this.props.match.params.action;
+        if (action === 'edit') {
 
-    renderDetailView() {
-        const lecturer = this.state.lecturer;
-        // console.log(lecturer)
-        return (
-            <div className="form-group">
-                <form>
-                    <label>Name</label>
-                    <input type="text" className="form-control"  value={lecturer[0].name || ''} name="code" />
-                    <label>Occupation</label>
-                    <input type="text" className="form-control"  value={lecturer[0].occupation || ''} name="code"  />
-                    <label>School</label>
-                    <input type="text" className="form-control"  value={lecturer[0].school || ''} name="code"  />
-                    <label>Faculty</label>
-                    <input type="text" className="form-control"  value={lecturer[0].faculty || ''} name="code" />
-                    <label>Phone</label>
-                    <input type="text" className="form-control"  value={lecturer[0].phone || ''} name="code"  />
-                    <label>E-mail</label>
-                    <input type="text" className="form-control"  value={lecturer[0].email || ''} name="code" />
-                </form>
-            </div>
-            );        
+        } else if (action === 'saving') {
+
+        }
     }
 
     render() {
-        // const {isLoading, isEditing, lecturer} = this.state;
-        // if(isLoading) {
-        //    return(<h2>Loading...</h2>)
-       return this.renderDetailView()
+        return this.state.isEditing ? <LecturerDetailEdit lecturer={this.state.lecturer} onChange={this.handleChange} onSubmit={this.handleSubmit}/> : <LecturerDetailsDisplay lecturer={this.state.lecturer} onClick={this.handleClick} onChange={this.handleChange}/>
+
+
+
     }
 }
 
+
+function LecturerDetailsDisplay(props) {
+   
+            return(
+           
+            <div className="form-group">
+                <form>
+                    <label>Name</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'name'} value={props.lecturer.name || ''} readOnly />
+                    <label>Occupation</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'occupation'} value={props.lecturer.occupation || ''}  readOnly  />
+                    <label>School</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'school'} value={props.lecturer.school || ''}  readOnly  />
+                    <label>Faculty</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'faculty'} value={props.lecturer.faculty || ''}  readOnly />
+                    <label>Phone</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'phone'} value={props.lecturer.phone || ''}  readOnly  />
+                    <label>E-mail</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'email'} value={props.lecturer.email || ''}  readOnly />
+                    <button className="lecturer-details-btn" onClick={props.onClick}>Edit</button>
+                    <Link to="/lecturers" ><button className="lecturer-details-btn">Back</button> </Link>
+                </form>
+                
+            </div>
+       );
+}
+
+function LecturerDetailEdit(props) {
+            return(
+           
+            <div className="form-group">
+                <form action="#" onSubmit={props.onSubmit}>
+                    <label>Name</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'name'} value={props.lecturer.name} readOnly={props.isEditing} />
+                    <label>Occupation</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'occupation'} value={props.lecturer.occupation}  readOnly={props.isEditing}  />
+                    <label>School</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'school'} value={props.lecturer.school}  readOnly={props.isEditing}  />
+                    <label>Faculty</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'faculty'} value={props.lecturer.faculty}  readOnly={props.isEditing} />
+                    <label>Phone</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'phone'} value={props.lecturer.phone}  readOnly={props.isEditing}  />
+                    <label>E-mail</label>
+                    <input type="text" className="form-control" onChange={props.onChange} name={'email'} value={props.lecturer.email}  readOnly={props.isEditing} />
+                    <button className="lecturer-details-btn" >Save</button>
+                    <Link to="/lecturers" ><button className="lecturer-details-btn">Back</button> </Link>
+                </form>
+                
+            </div>
+       );
+}
+
+function Input (props){
+    return(
+        <div className="input-wrapper">
+            <label className="input-label" htmlFor={props.htmlFor}>{props.labelText}</label>
+            <br/>
+            <input className="input-component border-bottom" type={props.type} name={props.name} value={props.value} onChange={props.onChange} />
+        </div>
+    );
+}

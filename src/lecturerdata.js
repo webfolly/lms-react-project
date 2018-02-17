@@ -16,3 +16,4 @@ export let lecturer = [{
     phone: '+61 7 336 52379',
     email: 'xueli@itee.uq.edu.au'
 }]
+
