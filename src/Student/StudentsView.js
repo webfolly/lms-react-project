@@ -56,7 +56,6 @@ export default class StudentsView extends React.Component {
             .catch(error => this.setState({error}));
     }
     handleClick(event){
-        const name = event.target.name;
         const value = event.target.value;
         event.preventDefault();
         if(window.confirm(`Student will be deleted.Confirm to continue..`)) {

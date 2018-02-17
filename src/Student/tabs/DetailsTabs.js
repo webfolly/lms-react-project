@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
     Link
 } from 'react-router-dom';
 
@@ -9,7 +7,6 @@ import {
 export default class DetailsTabs extends Component {
 
     render() {
-        const student = this.props.student;
         return (
             <div>
                 <form onSubmit={this.props.handleSubmit}>
@@ -29,7 +26,7 @@ export default class DetailsTabs extends Component {
                                         <div className="col-lg-3 col-md-3">
                                             <center>
                                         <span className="text-left">
-                                        <img
+                                        <img alt={this.props.student.firstName}
                                             src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120"
                                             className="img-responsive img-thumbnail"/>
 
@@ -48,7 +45,7 @@ export default class DetailsTabs extends Component {
                                                                 className="text-right">Viddhyut Mall</span></h4>
                                                         </div>
                                                         <div className="modal-body">
-    <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg"
+    <center><img alt={this.props.student.firstName} src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg"
                  className="img-responsive img-thumbnail"/></center>
                                                         </div>
                                                         <div className="modal-footer">
@@ -67,22 +64,6 @@ export default class DetailsTabs extends Component {
                                             </div>
                                     </span></center>
 
-                                            <div className="table-responsive panel">
-                                                <table className="table">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td className="text-center">
-                                                        <span className="btn btn-danger text-success btn-block"><i
-                                                            className="fa fa-rupee"></i> Unpaid</span>
-                                                            <Link to="/" className="btn btn-success btn-block"
-                                                                  data-toggle="modal" data-target="#PhotoOption"><i
-                                                                className="fa fa-photo"></i> Change</Link>
-                                                        </td>
-                                                    </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
 
 
                                         </div>
@@ -146,10 +127,10 @@ export default class DetailsTabs extends Component {
                                                                 <td className="text-success"><i
                                                                     className="fa fa-list-ol"></i>Student code
                                                                 </td>
-                                                                <td><input type={'text'} name={'language'}
+                                                                <td><input type={'text'} name={'studentcode'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.studentcode}
+                                                                           value={this.props.studentCode}
                                                                            readOnly={this.props.action === 'view'}/>
                                                                 </td>
                                                             </tr>
@@ -177,17 +158,7 @@ export default class DetailsTabs extends Component {
                                                                 </td>
                                                             </tr>
 
-                                                            <tr>
-                                                                <td className="text-success"><i
-                                                                    className="fa fa-university"></i> School
-                                                                </td>
-                                                                <td><input type={'text'} name={'school'}
-                                                                           className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
-                                                                           onChange={this.props.callback}
-                                                                           value={this.props.student.school}
-                                                                           readOnly={this.props.action === 'view'}/>
-                                                                </td>
-                                                            </tr>
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -222,7 +193,7 @@ export default class DetailsTabs extends Component {
                                                                     <input type={'text'} name={'city_sub'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.student.city_sub}
+                                                                           value={this.props.student.citySuburb}
                                                                            readOnly={this.props.action === 'view'}/>
 
                                                                 </td>
@@ -247,10 +218,10 @@ export default class DetailsTabs extends Component {
                                                                 </td>
                                                                 <td>
 
-                                                                    <input type={'text'} name={'addressCountry'}
+                                                                    <input type={'text'} name={'country'}
                                                                            className={(this.props.action !== 'create') ? 'noborder-inputText' : ''}
                                                                            onChange={this.props.callback}
-                                                                           value={this.props.student.addressCountry}
+                                                                           value={this.props.student.country}
                                                                            readOnly={this.props.action === 'view'}/>
 
                                                                 </td>
