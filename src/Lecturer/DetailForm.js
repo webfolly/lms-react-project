@@ -21,9 +21,8 @@ export default class DetailForm extends Component {
     }
 
     componentWillMount() {
-        this.state = this.props.object;
-        let object = ('edit' === this.props.action);
-        console.log(this.props.object);
+        //const {id} = this.props.match.params;
+
 
         this.setState({isEditing: true});
     }
@@ -93,22 +92,24 @@ export default class DetailForm extends Component {
 
 
     render() {
+        
         // const {isLoading, isEditing, lecturer} = this.state;
         // if(isLoading) {
         //    return(<h2>Loading...</h2>)
-        if(this.state.isEditing){
-           button = <EditButton onClick={this.handleEdit}/>
-        } else {
-            button = <SaveButton onClick={this.handleSave}/>
-        }
+        // if(this.state.isEditing){
+        //    button = <EditButton onClick={this.handleEdit}/>
+        // } else {
+        //     button = <SaveButton onClick={this.handleSave}/>
+        // }
         
         return (
+            this.state.isEditing ? <LecturerDetailEdit lecturer={this.state.lecturer} onChange={this.handleChange} onSubmit={this.handleSubmit}/> : <LecturerDetailsDisplay lecturer={this.state.lecturer} onClick={this.handleClick}/>
         // <div>
         //     <EditRender lecturers={this.props.lecturer} handleChange={this.handleChange} readOnly={this.isEditing}/>
         //     {button}
         // </div>
         // )
-            this.renderSaveEditDetailView()
+            //this.renderSaveEditDetailView()
         
         )
 
@@ -145,24 +146,50 @@ export default class DetailForm extends Component {
     }
 }
 
-function EditRender(props) {
-    const lecturers = props.lecturers;
+function LecturerDetailsDisplay(props) {
+    const lecturers = lecturers;
             return(
            
             <div className="form-group">
                 <form>
                     <label>Name</label>
-                    <input type="text" className="form-control" onChange={props.handleChange} name={'name'} value={lecturers.name || ''} readOnly={props.isEditing} />
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'name'} value={props.lecturer.name || ''} readOnly={props.isEditing} />
                     <label>Occupation</label>
-                    <input type="text" className="form-control" onChange={props.handleChange} name={'occupation'} value={lecturers.occupation || ''}  readOnly={props.isEditing}  />
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'occupation'} value={props.lecturer.occupation || ''}  readOnly={props.isEditing}  />
                     <label>School</label>
-                    <input type="text" className="form-control" onChange={props.handleChange} name={'school'} value={lecturers.school || ''}  readOnly={props.isEditing}  />
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'school'} value={props.lecturer.school || ''}  readOnly={props.isEditing}  />
                     <label>Faculty</label>
-                    <input type="text" className="form-control" onChange={props.handleChange} name={'faculty'} value={lecturers.faculty || ''}  readOnly={props.isEditing} />
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'faculty'} value={props.lecturer.faculty || ''}  readOnly={props.isEditing} />
                     <label>Phone</label>
-                    <input type="text" className="form-control" onChange={props.handleChange} name={'phone'} value={lecturers.phone || ''}  readOnly={props.isEditing}  />
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'phone'} value={props.lecturer.phone || ''}  readOnly={props.isEditing}  />
                     <label>E-mail</label>
-                    <input type="text" className="form-control" onChange={props.handleChange} name={'email'} value={lecturers.email || ''}  readOnly={props.isEditing} />
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'email'} value={props.lecturer.email || ''}  readOnly={props.isEditing} />
+                    <button className="lecturer-details-btn" onClick={props.onClick}>Edit</button>
+                </form>
+                
+            </div>
+       );
+}
+
+function LecturerDetailEdit(props) {
+    //const lecturers = props.lecturers;
+            return(
+           
+            <div className="form-group">
+                <form>
+                    <label>Name</label>
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'name'} value={props.lecturer.name} readOnly={props.isEditing} />
+                    <label>Occupation</label>
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'occupation'} value={props.lecturer.occupation}  readOnly={props.isEditing}  />
+                    <label>School</label>
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'school'} value={props.lecturer.school}  readOnly={props.isEditing}  />
+                    <label>Faculty</label>
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'faculty'} value={props.lecturer.faculty}  readOnly={props.isEditing} />
+                    <label>Phone</label>
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'phone'} value={props.lecturer.phone}  readOnly={props.isEditing}  />
+                    <label>E-mail</label>
+                    <input type="text" className="form-control" onChange={props.handleChange} name={'email'} value={props.lecturer.email}  readOnly={props.isEditing} />
+                    <button className="lecturer-details-btn" onClick={props.onClick}>Save</button>
                 </form>
                 
             </div>
