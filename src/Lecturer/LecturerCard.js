@@ -9,7 +9,7 @@ export default class LecturerCard extends Component {
         
     
     const lecturers = this.props.lecturer;
-        console.log(lecturers);
+        console.log(this.props.lecturer.id);
     return (
         <div className='lecturercard'>
                 <div className='image'>
@@ -40,7 +40,7 @@ export default class LecturerCard extends Component {
                             {`${lecturers.email}`}
                         </li>
                         <li className='occupation'>
-                            <Link to={'/lecturers/detail/view/1'}>Details</Link>
+                            <Link to={'/lecturers/detail/view/'+this.props.lecturer.id}>Details</Link>
                         </li>
 
                     </ul>

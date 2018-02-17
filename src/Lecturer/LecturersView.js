@@ -112,8 +112,9 @@ export default class LecturersView extends Component {
             return (
                 <div className={'container-fluid'} >
                     {this.state.lecturers.map(function (l){
+                        console.log(l.id);
                         return <LecturerCard key={l.id} lecturer={l} />
-                   
+                        
                         }
                     )
                 }

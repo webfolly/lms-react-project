@@ -11,8 +11,8 @@ export function  fetchLecturersByID(id) {
     //.then(response => response.data.id )    
 }
 
-export function createLecturer() {
-    return axios.post('/lecturer');
+export function createLecturer(lecturer) {
+    return axios.post('/lecturer',lecturer);
 }
 
 export function deleteLecturerByID(id) {
