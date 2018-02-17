@@ -44,7 +44,7 @@ export default class StudentDetailView extends Component {
         // let student = fetchStudent(this.props.match.params.id);
         // console.log(student);
         //TODO GET DATA FROM API
-        if (action == 'view' || action == 'edit') {
+        if (action === 'view' || action === 'edit') {
             fetchStudent(this.props.match.params.id)
                 .then(data => {
                     this.setState({student: data.data})
@@ -73,7 +73,7 @@ export default class StudentDetailView extends Component {
 
     componentWillMount() {
         console.log('hello did');
-        if (this.props.match.params.action == 'view' || this.props.match.params.action === 'edit') {
+        if (this.props.match.params.action === 'view' || this.props.match.params.action === 'edit') {
             this.loadStudentDetail();
         }
         return;
@@ -81,7 +81,6 @@ export default class StudentDetailView extends Component {
 
 
     render() {
-        let obj = this.state;
         let action = this.props.match.params.action;
         return <DetailsTabs student={this.state.student} action={action} callback={this.handleChange}
                             handleSubmit={this.handleSubmit} />
