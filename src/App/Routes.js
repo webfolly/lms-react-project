@@ -5,14 +5,14 @@ import CourseDetailView from "../Course/CourseDetailView";
 import StudentsView from '../Student/StudentsView';
 import StudentDetailView from '../Student/StudentDetailView';
 import LecturerDetailView from '../Lecturer/LecturerDetailView';
-import Home from './Home';
+import Dashboard from './Home';
 import LecturersView from '../Lecturer/LecturersView';
 import LoginScreen from './LoginScreen';
 import Enrollment from '../Enrollment/Enrollment';
 
 export default () => ((
     <div>
-        <Route exact path="/" component={Home}/>
+        <Route exact path="/" component={Dashboard}/>
         <Route exact path="/courses" component={CoursesView}/>
         <Route exact path="/courses/detail/:id" component={CourseDetailView}/>
         <Route exact path="/courses/detail/:action/:id" component={CourseDetailView}/>

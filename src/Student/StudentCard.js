@@ -21,7 +21,7 @@ export default function StudentItem(props) {
     return(
         <div className="student-item">
             <span className="hover-border"></span>
-            <Avatar src={'./img/Zuckerberg.png'} style={{l1:"student-view-avatar",l2:"student-view-avatar-wrapper",l3:"student-view-avatar-image"}}/>
+            <Avatar src={'./img/user2.jpg'} style={{l1:"student-view-avatar",l2:"student-view-avatar-wrapper",l3:"student-view-avatar-image"}}/>
             <StudentProfile student={student} />
             <div className="btn-group">
                 <button className="btn-circle" value={student.id} onClick={props.onClick}> <i className="fa fa-times"></i></button>
