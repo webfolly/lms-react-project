@@ -12,7 +12,7 @@ export default function SideNav(props) {
             <div className="wf-navbar-block">
                 <div className="user-profile">
                     <div className="imgwrapper">
-                        <img src="./img/Zuckerberg.png" alt=""/>
+                        <img src="./img/Zuckerberg.png" alt="user"/>
                     </div>
                     <div className="user-info">
                         <p>Zuckerberg</p>
@@ -23,7 +23,7 @@ export default function SideNav(props) {
             <div id="navbar" className="main-menu">
                 <ul className="menu-list">
                     <li>
-                        <Link to="/"> Home </Link>
+                        <Link to="/"> Dashboard </Link>
                     </li>
                     <li>
                         <Link to="/courses">Course Management</Link>
@@ -38,7 +38,7 @@ export default function SideNav(props) {
                         <Link to="/enrolment/new">Enrolment</Link>
                     </li>
                     <li>
-                        <Link to="/admin"> Admin</Link>
+                        <Link to="/">Admin</Link>
                     </li>
                     <li>
                         <a onClick={props.onClick}>Logout</a>

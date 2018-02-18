@@ -4,3 +4,4 @@ import './styles/style-custom.css';
 import './styles/lecturer-card.css';
 import './styles/studentView.css';
 import './styles/login.css';
+import './styles/dashboard.css';
