@@ -24,9 +24,9 @@ export default function StudentItem(props) {
             <Avatar src={'./img/user2.jpg'} style={{l1:"student-view-avatar",l2:"student-view-avatar-wrapper",l3:"student-view-avatar-image"}}/>
             <StudentProfile student={student} />
             <div className="btn-group">
-                <button className="btn-circle" value={student.id} onClick={props.onClick}> <i className="fa fa-times"></i></button>
-                <Link to={`/students/detail/edit/${student.id}`}> <button className="btn-circle"> <i className="fa fa-edit"></i></button> </Link>
-                <Link to={`/enrolment/${student.id}`} ><button className="btn-circle"> <i className="fa fa-book"></i></button> </Link>
+                <button className="btn-circle" value={student.id} title="Delete" onClick={props.onClick}> <i className="fa fa-times"></i></button>
+                <Link to={`/students/detail/edit/${student.id}`}> <button className="btn-circle" title="Edit"> <i className="fa fa-edit"></i></button> </Link>
+                <Link to={`/enrolment/${student.id}`} ><button className="btn-circle" title="Enrollment"> <i className="fa fa-book"></i></button> </Link>
             </div>
         </div>
     );
