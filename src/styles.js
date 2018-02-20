@@ -5,3 +5,4 @@ import './styles/lecturer-card.css';
 import './styles/studentView.css';
 import './styles/login.css';
 import './styles/dashboard.css';
+import './styles/enrollment.css';
