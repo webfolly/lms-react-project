@@ -21,7 +21,7 @@ export default class LecturerCard extends Component {
                         <li>
                             {`${lecturers.id}`}
                         </li>
-                        <li>
+                        {/* <li>
                             {`${lecturers.occupation}`}
                         </li>
                         <li>
@@ -35,7 +35,7 @@ export default class LecturerCard extends Component {
                         </li>
                         <li>
                             {`${lecturers.email}`}
-                        </li>
+                        </li> */}
                         <li className='occupation'>
                             <Link to={'/lecturers/detail/view/'+this.props.lecturer.id}>Details</Link>
                         </li>

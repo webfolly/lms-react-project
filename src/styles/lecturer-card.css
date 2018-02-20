@@ -1,54 +1,116 @@
+body, html {
+    margin: 0;
+    font-family: 'Helvetica Neue',Helvetica,Arial,'sans-serif';
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fafafa;
+}
+
 .lecturercard {
     position: relative;
     top: 40px;
     bottom: 40px;
-    background-color: #2F2F2F;
+    background-color: white;
     border-radius: 10px;
-    width: 80%;
-    padding: 20px;
-    margin: 0 auto;
-    margin-bottom: 60px;
-    color: white;
-    text-align: left;
+    width: 200px;
+    padding: 20px 0px;
+    margin: 20px 15px 50px 15px;    
+    color: black;
+    text-align: center;
     font-weight: bold;
     transition: 0.3s;
+    justify-content: space-around;
+    display: inline-block;
+    border-bottom: 1px solid #eee;
+    transition: all 0.2s ease-in-out;
 }
 
 .lecturercard:hover {
-    box-shadow: 10px 10px grey;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 -1px 4px rgba(0, 0, 0, 0.2);
+    border-right: 4px solid green; 
 }
 
 .lecturercard .image {
     position: relative;
-    width: 40%;
-    display: inline-block;
-    text-align: left;  
-    margin: 0;
+    text-align: center; 
+    width: inherit; 
+    margin: 0 auto;
     padding: 0; 
     
 }
 
 .lecturercard .image img {
     position: relative;
-    width: 300px;
-    height: 300px;
-    float: left;
-
+    width: 150px;
+    height: 150px; 
+    margin: 0 auto;
+    padding: 0;   
 }
 
 .lecturercard .container {  
     position: relative;   
-    width: 60%;
-    margin: 0; 
-    padding: 10px;
-    display: inline-block;  
+    width: 150px;
+    margin: 0 auto; 
+    padding: 0;
 }
 
 .lecturercard .container ul {
     list-style-type: none; 
-    float: left;
+    padding: 0;
+    width: inherit;   
 }
 
 .lecturercard .container ul li {
-    padding: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.form-group {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px 0px;
+}
+
+.form-group .display {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px 0px;    
+}
+
+.form-group.display label {
+    font-size: 1.3em;
+}
+
+.form-group.display input {
+    background-color: transparent;  
+    border: transparent;  
+}
+
+.form-group input {
+    border: 2px solid #10B4AD;
+    background-color: #fff;
+}
+
+.form-group label {
+    padding: 15px 0px 0px 0px;
+}
+
+.form-group button {
+    padding: 5px 40px;
+    margin: 40px 40px 0px 0px;
+    border-radius: 5px;
+    color: white;
+}
+
+.form-group button:hover {
+    background-color: #333;
+}
+
+.form-group .first-btn {
+    background-color: #1076B4;
+}
+
+.form-group .back-btn {
+    background-color: #B41010;
 }
