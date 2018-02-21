@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LecturerCard from "./LecturerCard";
-
+import TopNav from '../App/TopNav'
 import '../styles';
 
 import {fetchLecturers, fetchLecturersByID, deleteLecturerByID} from '../api/lecturer';
@@ -81,7 +81,13 @@ export default class LecturersView extends Component {
                 <div className={'container-fluid'} >
                     {this.state.lecturers.map(function (l){
                         console.log(l.id);
-                        return <LecturerCard key={l.id} lecturer={l} />
+                        return (
+                            <div>
+                                <TopNav onClick={this.handleClick} />
+                                <LecturerCard key={l.id} lecturer={l} />
+                            </div>
+                        ) 
+                        
                         
                         }
                     )
