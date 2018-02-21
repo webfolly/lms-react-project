@@ -22,8 +22,9 @@ body, html {
     transition: 0.3s;
     justify-content: space-around;
     display: inline-block;
-    border-bottom: 1px solid #eee;
+    border: 2px solid #D4D2D2;
     transition: all 0.2s ease-in-out;
+    float: left;
 }
 
 .lecturercard:hover {
