@@ -83,7 +83,7 @@ export default class LecturersView extends Component {
                         console.log(l.id);
                         return (
                             <div>
-                                <TopNav onClick={this.handleClick} />
+                          
                                 <LecturerCard key={l.id} lecturer={l} />
                             </div>
                         ) 
