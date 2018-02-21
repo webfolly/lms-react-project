@@ -41,6 +41,10 @@ export default class LecturerCard extends Component {
                         </li>
 
                     </ul>
+                    <div className="btn-group">
+                        <button className="btn-circle" value={lecturers.id} title="Delete" onClick={this.onClick}> <i className="fa fa-times"></i></button>
+                        <Link to={`/lecturers/detail/edit/${lecturers.id}`}> <button className="btn-circle" title="Edit"> <i className="fa fa-edit"></i></button> </Link>
+                    </div>
                 </div>    
 
         </div>
