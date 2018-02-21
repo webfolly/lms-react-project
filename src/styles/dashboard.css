@@ -1,0 +1,107 @@
+.dashboard-container {
+    background:#fafafa;
+    width: 99%;
+    margin: 0;
+    padding: 0 5px;
+}
+.dashboard-item-left {
+    width: 28%;
+    padding: 5px;
+    display: inline-block;
+    color:#fff;
+}
+.dashboard-item-right {
+    width: 65%;
+    margin-left: 10px;
+    display: inline-block;
+}
+.dashboard-item-left > p {
+    margin-left: 30%;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.dashboard-item-left div {
+    margin-left: 10px;
+}
+.panel100 {
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+.item-wrapper {
+    padding: 3px 3px;
+}
+.list-group-item i {
+    margin-right: 5px;
+}
+.panel-heading {
+    background:#eee;
+}
+.wf-a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.wf-path0{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+    opacity: 0;
+}
+.wf-path1{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+    opacity: 1;
+}
+.wf-text{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+    text-anchor: middle; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 800; 
+    font-stretch: normal; 
+    font-size: 15px; 
+    line-height: normal; 
+    font-family: Arial;
+}
+.wf-text{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-anchor: middle; 
+    font-style: normal; 
+    font-variant: normal;
+    font-weight: normal; 
+    font-stretch: normal; 
+    font-size: 14px; 
+    line-height: normal; 
+    font-family: Arial;
+}
+
+.quick-actions-card {
+    width: 100%;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.quick-actions-card:hover{
+    box-shadow: 0 2px 4px rgba(0,0,0,.125);
+}
+.quick-actions-card > i {
+    float:left;
+    font-size: 40px;
+    padding: 1.5rem;
+    margin-right: 1rem;
+    background-color: #007bff
+}
+.quick-actions-card-title1 {
+    padding-top: 1.2rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.quick-actions-card-title2 {
+    margin-bottom: 1.6rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.2
+}

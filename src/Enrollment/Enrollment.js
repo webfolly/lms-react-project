@@ -25,7 +25,15 @@ export default class Enrollment extends React.Component{
         let id = this.state.searchString;
         e.preventDefault();
         fetchStudent(id)
-            .then(response => this.setState({student:response.data}))
+            .then(
+                response => { 
+                    if(response.data) {
+                        this.setState({student:response.data});
+                    } else {
+                        alert('Student not found!');
+                    }
+                }
+            )
             .then(error => this.setState({error}));
 
     }
@@ -34,10 +42,21 @@ export default class Enrollment extends React.Component{
         this.setState({[name]:value});
     }
     handleSubmit(e){
+        e.preventDefault();
         this.setState({isSaving:true});
         const {student,courseToEnroll} = this.state;
         enrollCourse(student.id,courseToEnroll)
-            .then(repsonse => this.setState({isSaving:false}))
+            .then(response => {
+                if(response.status === 200) {
+                    this.setState({isSaving:false});
+                    fetchStudent(this.state.student.id)
+                        .then(response => this.setState({student:response.data}))
+                        .then(error => this.setState({error}));
+                } else {
+                    this.setState({isSaving:false});
+                    alert(response.status);
+                }
+            })
             .catch(error => this.setState({error}));
     }
     isNew(){
@@ -62,74 +81,20 @@ export default class Enrollment extends React.Component{
             return(
                 <div>
                     <Searchbar value={this.state.searchString} onChange={this.handleChange} onClick={this.handleClick}/>
-                    <form action="" onSubmit={this.handleSubmit} style={{marginTop:70,marginLeft:20,marginRight:20}}>
-                        <StudentInfo student={this.state.student}/>
-                        <hr/>
-                        <CourseInfo courses={this.state.courses} onChange={this.handleChange}/>
-                        <br/>
-                        <br/>
-                        <button className="btn btn-success" style={{marginRight:20}}>Submit</button>
-                        <Link to={'/'}><button className="btn btn-success">Back</button> </Link>
-                    </form>
+                    <div className="row" style={{marginLeft:0,marginRight:0}}>
+                        <form action="" onSubmit={this.handleSubmit} style={{marginTop:60}}>
+                            <div className="row">
+                            <StudentInfo student={this.state.student}/>
+                            <CourseInfo courses={this.state.courses} onChange={this.handleChange}/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             );
         }
     }
 }
 
-function StudentInfo (props){
-    const student = props.student;
-    let i = '0';
-    return(
-        <div>
-            <h3>Student Information</h3>
-            <table className="table table-hover" style={{marginTop:10}}>
-                <thead>
-                    <tr>
-                        <th style={{padding:13}}>Student_ID</th>
-                        <th style={{padding:13}}>Full Name</th>
-                        <th style={{padding:13}}>Country</th>
-                        <th style={{padding:13}}>email</th>
-                        <th style={{padding:13}}>Maximum Credit Points</th>
-                        <th style={{padding:13}}>Current Credit Points</th>
-                    </tr>
-                </thead>
-            <tbody>
-                <tr>
-                    <td>{student.id}</td>
-                    <td>{student.firstName} {student.lastName}</td>
-                    <td>{student.country}</td>
-                    <td>{student.email}</td>
-                    <td>{student.maxCredit}</td>
-                    <td>{student.creditsAchieved}</td>
-                </tr>
-                <tr>
-                    <th style={{borderTop:'none'}}> Course Enrolled</th>
-                </tr>
-                <tr>
-                {student.enrolments ? (student.enrolments.map(item => <td key={item.course.id}>{item.course.name}</td>)):null}
-                </tr>
-            </tbody>
-                </table>
-        </div>
-    );
-}
-function CourseInfo(props){
-    let courses = props.courses.map( item => {
-        return(
-        <div className="radio" key={item.id}>
-            <label htmlFor="course">
-            <input type='radio' name='courseToEnroll' value={item.id} onChange={props.onChange} />{item.name} </label>
-        </div>);
-        }
-    );
-    return (
-        <div>
-            <h3>Courses to Enroll</h3>
-            {courses}
-        </div>
-    );
-}
 function Searchbar(props) {
     return(
          <div className="topnav topnav-fixed">
@@ -146,4 +111,76 @@ function Searchbar(props) {
             </div>
         </div>
     );
+}
+
+function StudentInfo (props){
+    const student = props.student;
+    const courseList = student.enrolments ? (student.enrolments.length ? (student.enrolments.map(item => <li key={item.course.id}>{item.course.name}</li>)):'No Course Enrolled'):null
+    return(
+        <div className="col-md-6 col-sm-12 col-xs-12 card-container">
+            <div className="card-header">
+                <h4>Student Information</h4>
+            </div>
+            <div className="card-body">
+                <div className="student-info-wrap clearfix">
+                    <div className="avatar">
+                        <img src="../img/user2.jpg" alt="avatar"/>
+                    </div>
+                    <div className="student-info">
+                        <label className="student-info-title">Name:
+                            <input className="student-info-input1" type="text" value={student.lastName ? `${student.firstName} ${student.lastName}` : ''} readOnly/>
+                        </label>  
+                        <label className="student-info-title">ID:
+                            <input className="student-info-input1" type="text" value={student.id} readOnly/>
+                        </label>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <label className="student-info-title" htmlFor="fullname"><i className="fa fa-envelope" ></i> Email:
+                        <input className="student-info-input2" type="text" value={student.email} readOnly/>
+                    </label>
+                    <br/>
+                    <label className="student-info-title" htmlFor="fullname"><i className="fa fa-phone"></i> Mobile:
+                        <input className="student-info-input2" type="text" value={student.mobile} readOnly/>
+                    </label>
+                    <label className="student-info-title" htmlFor="fullname"><i className="fa fa-paper-plane"></i> Maximum Credits Points:
+                        <input className="student-info-input2" type="text" value={student.maxCredit} readOnly/>
+                    </label>
+                    <label className="student-info-title" htmlFor="fullname"><i className="fa fa-calculator"></i> Current Credit Points:
+                        <input className="student-info-input2" type="text" value={student.creditsAchieved} readOnly/>
+                    </label>
+                </div>
+                <div className="course-enrolled">
+                    <h5> <i className="fa fa-book"></i> Course Enrolled</h5>
+                    <ul>
+                        {courseList}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+}
+function CourseInfo(props){
+    let courses = props.courses.map( item => {
+    return(
+        <div className="course-item" key={item.id}>
+            <label htmlFor="course">
+            <input type='radio' name='courseToEnroll' value={item.id} onChange={props.onChange} />{item.name} </label>
+        </div>
+    )});
+    return(
+        <div className="col-md-6 col-sm-12 col-xs-12 card-container">
+            <div className="card-header">
+                <h4>Courses to Enroll</h4>
+            </div>
+            <div className="card-body">
+                {courses}
+            </div>
+            <div className="card-footer">
+                <button title="Save"><i className="fa fa-save"></i></button>
+                <Link to={'/'}><button className="float-right" title="Go back to Home"> <i className="fa fa-home"></i></button> </Link>
+            </div>
+        </div>
+    );  
 }
