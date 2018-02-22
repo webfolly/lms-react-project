@@ -99,22 +99,13 @@
     visibility: visible;
 }
 /* sytle of avatar in student view */
-.student-view-avatar {
-    float:left;
-    padding:5px 10px;
-    margin-top: 10px;
+.gravatar-wrapper {
+    float: left;
+    padding: 10px 10px 5px;
+} 
+.image-circle {
+    border-radius: 50%;
 }
-.student-view-avatar-wrapper {
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    overflow:hidden;
-}
-.student-view-avatar-image {
-    width:100%;
-    height:100%;
-}
-
 /*style of student item */
 .itemProfile {
     float: left;

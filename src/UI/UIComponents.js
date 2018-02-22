@@ -1,4 +1,5 @@
 import React from 'react';
+import gravatarUrl from 'gravatar-url';
 export function Avatar(props) {
     let src = props.src;
     return(
@@ -24,5 +25,15 @@ export function Spinner (props) {
             <i className="fa fa-spinner fa-spin" style={{fontSize:50,color:'#00CE6F',position:'absolute',top:300}}></i>
         </div>
     );
+}
 
+export function Gravatar ({email,size=40,style,...rest}) {
+    return (
+        <img
+        src={gravatarUrl(email,{size})} 
+        alt="gravatar"
+        style={{...style,width:size,height:size}}
+        {...rest}
+        />
+    );
 }
