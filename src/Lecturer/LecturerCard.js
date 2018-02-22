@@ -21,7 +21,7 @@ export default class LecturerCard extends Component {
                         <li>
                             {`${lecturers.id}`}
                         </li>
-                        <li>
+                        {/* <li>
                             {`${lecturers.occupation}`}
                         </li>
                         <li>
@@ -35,12 +35,16 @@ export default class LecturerCard extends Component {
                         </li>
                         <li>
                             {`${lecturers.email}`}
-                        </li>
+                        </li> */}
                         <li className='occupation'>
                             <Link to={'/lecturers/detail/view/'+this.props.lecturer.id}>Details</Link>
                         </li>
 
                     </ul>
+                    <div className="btn-group">
+                        <button className="btn-circle" value={lecturers.id} title="Delete" onClick={this.onClick}> <i className="fa fa-times"></i></button>
+                        <Link to={`/lecturers/detail/edit/${lecturers.id}`}> <button className="btn-circle" title="Edit"> <i className="fa fa-edit"></i></button> </Link>
+                    </div>
                 </div>    
 
         </div>

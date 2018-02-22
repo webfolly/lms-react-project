@@ -91,7 +91,7 @@ function LecturerDetailsDisplay(props) {
    
             return(
            
-            <div className="form-group">
+            <div className="form-group display">
                 <form>
                     <label>Name</label>
                     <input type="text" className="form-control" onChange={props.onChange} name={'name'} value={props.lecturer.name || ''} readOnly />
@@ -105,8 +105,8 @@ function LecturerDetailsDisplay(props) {
                     <input type="text" className="form-control" onChange={props.onChange} name={'phone'} value={props.lecturer.phone || ''}  readOnly  />
                     <label>E-mail</label>
                     <input type="text" className="form-control" onChange={props.onChange} name={'email'} value={props.lecturer.email || ''}  readOnly />
-                    <button className="lecturer-details-btn" onClick={props.onClick}>Edit</button>
-                    <Link to="/lecturers" ><button className="lecturer-details-btn">Back</button> </Link>
+                    <button className="first-btn" onClick={props.onClick}>Edit</button>
+                    <Link to="/lecturers" ><button className="back-btn">Back</button> </Link>
                 </form>
                 
             </div>
@@ -130,8 +130,8 @@ function LecturerDetailEdit(props) {
                     <input type="text" className="form-control" onChange={props.onChange} name={'phone'} value={props.lecturer.phone}  readOnly={props.isEditing}  />
                     <label>E-mail</label>
                     <input type="text" className="form-control" onChange={props.onChange} name={'email'} value={props.lecturer.email}  readOnly={props.isEditing} />
-                    <button className="lecturer-details-btn" >Save</button>
-                    <Link to="/lecturers" ><button className="lecturer-details-btn">Back</button> </Link>
+                    <button className="first-btn" >Save</button>
+                    <Link to="/lecturers" ><button className="back-btn">Back</button> </Link>
                 </form>
                 
             </div>

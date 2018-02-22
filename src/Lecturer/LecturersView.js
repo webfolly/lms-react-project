@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LecturerCard from "./LecturerCard";
-
+import TopNav from '../App/TopNav';
 import '../styles';
 
 import {fetchLecturers, fetchLecturersByID, deleteLecturerByID} from '../api/lecturer';
@@ -28,10 +28,17 @@ export default class LecturersView extends Component {
             .catch(error => this.setState({error}));         
     }
 
-    GetLecturersByID(id) {
+    GetLecturerByID(id) {
         this.setState({isLoading:true});
         fetchLecturersByID(id)
-            .then(response => this.setState({isLoading:false,lecturers:[response.data]}))
+            .then(response =>{
+                if(response.data) {
+                    this.setState({isLoading:false,lecturers:[response.data]});
+                }else{
+                    alert('Lecturer not found!');
+                    this.setState({isLoading:false});
+                }   
+            }) 
             .catch(error => this.setState({error}));
     }
 
@@ -62,7 +69,7 @@ export default class LecturersView extends Component {
     handleSubmit(event){
         event.preventDefault();
         if(this.state.idChecked) {
-            this.state.searchString === '' ? this.GetLecturers() :this.GetLecturerById(this.state.searchString);
+            this.state.searchString === '' ? this.GetLecturers() :this.GetLecturerByID(this.state.searchString);
         }
     }
 
@@ -77,11 +84,17 @@ export default class LecturersView extends Component {
         }else if(this.state.error){
             return <span>something error</span> 
         }else{
-            return (
+            return ( 
                 <div className={'container-fluid'} >
+                <TopNav value={this.state.searchString} idChecked={this.state.idChecked} onInputChange={this.handleInputChage} onSubmit={this.handleSubmit} onClick={this.handleClick}/>
                     {this.state.lecturers.map(function (l){
                         console.log(l.id);
-                        return <LecturerCard key={l.id} lecturer={l} />
+                        return (
+                            <div>
+                                <LecturerCard key={l.id} lecturer={l} />
+                            </div>
+                        ) 
+                        
                         
                         }
                     )
