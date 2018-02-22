@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {logOut} from '../api/auth';
 
 export default function SideNav(props) {
     return (
@@ -12,10 +13,10 @@ export default function SideNav(props) {
             <div className="wf-navbar-block">
                 <div className="user-profile">
                     <div className="imgwrapper">
-                        <img src="./img/Zuckerberg.png" alt="user"/>
+                        <img src="../img/Zuckerberg.png" alt="user"/>
                     </div>
                     <div className="user-info">
-                        <p>Zuckerberg</p>
+                        <p>{JSON.parse(localStorage.curUser).username}</p>
                         <div>CEO</div>
                     </div>
                 </div>
@@ -23,7 +24,7 @@ export default function SideNav(props) {
             <div id="navbar" className="main-menu">
                 <ul className="menu-list">
                     <li>
-                        <Link to="/"> Dashboard </Link>
+                        <Link to="/dashboard"> Dashboard </Link>
                     </li>
                     <li>
                         <Link to="/courses">Course Management</Link>
@@ -38,10 +39,10 @@ export default function SideNav(props) {
                         <Link to="/enrolment/new">Enrolment</Link>
                     </li>
                     <li>
-                        <Link to="/">Admin</Link>
+                        <Link to="/dashboard">Admin</Link>
                     </li>
                     <li>
-                        <a onClick={props.onClick}>Logout</a>
+                        <Link to="/" onClick={() => logOut()}>Logout</Link>
                     </li>
                 </ul>
             </div>

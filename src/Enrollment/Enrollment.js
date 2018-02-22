@@ -14,7 +14,6 @@ export default class Enrollment extends React.Component{
             courseToEnroll:'',
             error:null,
             isSaving:false,
-            ischecked:false,
             searchString:''
         }
         this.handleClick = this.handleClick.bind(this);
@@ -34,8 +33,7 @@ export default class Enrollment extends React.Component{
                     }
                 }
             )
-            .then(error => this.setState({error}));
-
+            .catch(error => this.setState({error}));
     }
     handleChange(e){
         const {name,value} = e.target;
@@ -68,15 +66,16 @@ export default class Enrollment extends React.Component{
         if(!this.isNew()){
             axios.all([fetchStudent(id),fetchCourses()])
                 .then(axios.spread((student,courses) => this.setState({student:student.data,courses:courses.data})))
-                .then(error => this.setState({error}));
+                .catch(error => this.setState({error}));
         }
         fetchCourses()
             .then(repsonse => this.setState({courses:repsonse.data}))
-            .then(error => this.setState({error}));
+            //.catch(error => this.setState({error}));
+            .catch(e => console.log(e))
     }
     render(){
         if(this.state.error) {
-            return <p>something error </p>
+            return <p>Something Error</p>
         } else {
             return(
                 <div>
@@ -94,7 +93,6 @@ export default class Enrollment extends React.Component{
         }
     }
 }
-
 function Searchbar(props) {
     return(
          <div className="topnav topnav-fixed">
@@ -112,7 +110,6 @@ function Searchbar(props) {
         </div>
     );
 }
-
 function StudentInfo (props){
     const student = props.student;
     const courseList = student.enrolments ? (student.enrolments.length ? (student.enrolments.map(item => <li key={item.course.id}>{item.course.name}</li>)):'No Course Enrolled'):null
@@ -179,7 +176,7 @@ function CourseInfo(props){
             </div>
             <div className="card-footer">
                 <button title="Save"><i className="fa fa-save"></i></button>
-                <Link to={'/'}><button className="float-right" title="Go back to Home"> <i className="fa fa-home"></i></button> </Link>
+                <Link to={'/dashboard'}><button className="float-right" title="Go back to Home"> <i className="fa fa-home"></i></button> </Link>
             </div>
         </div>
     );  
