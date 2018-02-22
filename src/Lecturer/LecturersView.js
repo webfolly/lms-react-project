@@ -28,7 +28,7 @@ export default class LecturersView extends Component {
             .catch(error => this.setState({error}));         
     }
 
-    GetLecturersByID(id) {
+    GetLecturerByID(id) {
         this.setState({isLoading:true});
         fetchLecturersByID(id)
             .then(response =>{
